@@ -25,4 +25,4 @@ class produce_update_list(object):
         target_coverage(self.target_account_out_filepath,self.lead_out_filepath,self.converged_filepath, for_marketo = True)
 
 
-produce_update_list('20150119')
+produce_update_list('20150119')   
