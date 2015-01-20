@@ -1,0 +1,87 @@
+Alex (and Carl) asked for a report that links information in Salesforce and Marketo that had previously not been linked:
+    -Target Accounts (SF)
+    -Leads (in Marketo marketing database)
+
+The goal is to produce two reports:
+
+#1
+                    Buyer Type
+                    BI    | Sales | Marketing | OEM | Other  <-- for leads, where their marketo job title puts them, based off of titles doc
+Target Account     |
+-------------------------------------
+Non-Targer Account |
+
+^do the leads fall into target accounts or not
+
+Probably want to dedup both, probably on name [just to make sure]
+
+#2
+                | BI titles we have in marketo | Sales | Market | Other
+Target Account 1
+--------------------------
+Target Account 2
+-------------------------
+...
+
+Process
+
+--leader
+--business
+--president
+--manager
+--distribution
+--lead
+--mgr
+--management
+--commercial
+--evp
+--vice
+--integration
+--communication --> marketing
+--service/services
+--consultants/system
+--director
+--channel -->marketing
+--officer
+--corporate
+--associate
+--technician
+--software
+--purchasing
+--sfdc
+--quality
+--applications
+--regulatory
+--advisor
+--process
+--logistics
+--administrative
+--alliances
+--ecommerce
+--operating
+--design
+--radiology
+--consultant
+--infrastructure
+--professional
+--senior
+--general
+--medical
+--care
+--diagnostic
+--assurance
+--records
+--group
+--global
+--counsel
+--head
+--support
+--security
+--telecommunications
+--implementation
+--engagement
+--recruiting
+--researcher
+--network
+--office
+--pacs
