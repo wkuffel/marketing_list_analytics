@@ -1,7 +1,8 @@
 __author__ = 'wkuffel'
+__author__ = 'wkuffel'
 
 import csv
-#from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz
 
 
 class account_list(object):
@@ -9,8 +10,7 @@ class account_list(object):
     def __init__(self, path, out_path):
         self.path = path
         self.out_path = out_path
-        self.writing_field_names_ordered = ['Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name']
-        #self.writing_field_names_ordered = ['Account Name', 'Clean Company Name','City', ' Description', 'Ticker Symbol', 'Parent Name', 'Ultimate Parent ID', 'Lead Source', 'State', 'EFX ID', 'Parent ID', ' Primary Industry', 'Website', 'Fax', 'Phone', 'Primary NAICS', 'Ownership', 'Address', 'Ultimate Parent Name', 'Country', 'Employees', 'SIC (US)', 'Postal Code', 'Industry Breakout (from Count Tab)', 'ID', 'Revenue(USD)', 'Data Source(s)', 'Owner', ]
+        self.writing_field_names_ordered = ['Clean Company Name', 'Industry', 'Revenue ($M)', 'Owner', 'Notes', 'Company Name']
         self.import_csv()
         self.write_to_csv()
         #self.inspect_duplicates()
@@ -20,23 +20,23 @@ class account_list(object):
             reader = csv.DictReader(f)
             acct_list = []
             for row in reader:
-                #print row
                 updated_row1 = self.gen_clean_account_name(row)
                 acct_list.append(updated_row1)
+                #print updated_row1
                 #print row
-            self.acct_list = acct_list[:-7]
+            self.acct_list = acct_list
 
     def write_to_csv(self):
         with open(self.out_path, 'w') as write_csv:
             writer = csv.DictWriter(write_csv, fieldnames= self.writing_field_names_ordered, lineterminator = '\n')
             writer.writeheader()
             for row in self.acct_list:
-                print row.keys()
+                #print row.keys()
                 writer.writerow(row)
 
 
     def gen_clean_account_name(self, row):
-        row['Clean Company Name'] = row['Account Name'].lower().strip()
+        row['Clean Company Name'] = row['Company Name'].lower().strip()
         row['Clean Company Name'] = row['Clean Company Name'].replace('.', '')
         row['Clean Company Name'] = row['Clean Company Name'].replace(',', '')
         row['Clean Company Name'] = row['Clean Company Name'].replace('"', '')
@@ -70,29 +70,11 @@ class account_list(object):
         #print row['Clean Company Name']
         return row
 
-    def inspect_duplicates(self):
-        total_dups =0
-        updated_accts = []
-        for check_row in self.acct_list:
-            check_row['Duplicate'] = 0
-            for target_row in self.acct_list:
-                if check_row['Account ID'] != target_row['Account ID']:
-                    if fuzz.token_set_ratio(check_row['Clean Company Name'], target_row['Clean Company Name'])>90 :
-                        #print "token_set ratio: " + check_row['Clean Company Name'] + ' | ' + target_row['Clean Company Name']
-                        check_row['Duplicate'] = 1
-                        total_dups +=1
-
-            updated_accts.append(check_row)
-        self.acct_list = updated_accts
-        print total_dups
 
 
 
 
-#target_account_filepath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150120 allocated accounts/Birst allocated accounts.csv'
-#target_account_out_filepath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150120 marketo update/output files/Birst allocated accounts manipulated.csv'
-#account_list(target_account_filepath,target_account_out_filepath)
 
 
 
-account_list('C:/Users/wkuffel/Desktop/Marketing Data/20150130 marketo update/input files/20150130 target accounts.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/20150130 marketo update/output files/target accounts manipulated.csv')
+account_list('C:/Users/wkuffel/Desktop/Marketing Data/20150120 marketo update/EMEA top 30 prospects 2015.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/20150120 marketo update/EMEA top 30 prospects 2015 manipulated.csv')

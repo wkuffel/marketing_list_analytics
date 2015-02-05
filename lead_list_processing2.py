@@ -7,7 +7,7 @@ class lead_list(object):
     def __init__(self, in_path, out_path):
         self.path = in_path
         self.out_path = out_path
-        self.writing_field_names_ordered =['Id', 'First Name','Last Name', 'Email Address', 'Phone Number', 'SFDC Type', 'Company Name', 'Job Title','Annual Company Revenue Range', 'Company Industries', 'Annual Company Revenue Range (A)', 'Company Employee Range',   'Lead Status', 'Lead Source', 'Updated At', 'Lead Score', 'Decision Maker', 'Sales Buyer', 'Marketing Buyer', 'BI Buyer', 'OEM Buyer', 'Analytics Buyer', 'Clean Company Name1', 'HQ Country','Country','Region', 'State', 'HQ State']
+        self.writing_field_names_ordered =['Id', 'First Name','Last Name', 'Email Address', 'Phone Number', 'SFDC Type', 'Company Name', 'Job Title','Annual Company Revenue Range', 'Company Industries', 'Annual Company Revenue Range (A)', 'Company Employee Range',   'Lead Status', 'Lead Source', 'Updated At', 'Lead Score', 'Decision Maker', 'Job Level', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title', 'Clean Company Name1', 'HQ Country','Country','Region', 'State', 'HQ State']
 
 
         self.import_csv()
@@ -43,14 +43,14 @@ class lead_list(object):
         if  row['Clean Company Name1'][-5:] ==" corp":
             row['Clean Company Name1'] = row['Clean Company Name1'][:-5]
             #print row['Clean Company Name']
-        if  row['Clean Company Name1'][-5:] ==" co":
+        if  row['Clean Company Name1'][-3:] ==" co":
             row['Clean Company Name1'] = row['Clean Company Name1'][:-3]
             #print row['Clean Company Name']
 
         row['Clean Company Name1'] = row['Clean Company Name1'].replace('corporation', '')
         row['Clean Company Name1'] = row['Clean Company Name1'].replace('corp', '')
         row['Clean Company Name1'] = row['Clean Company Name1'].replace('company', '')
-        row['Clean Company Name1'] = row['Clean Company Name1'].replace('the', '')
+        row['Clean Company Name1'] = row['Clean Company Name1'].replace('the ', '')
 
 
         row['Clean Company Name1'] = row['Clean Company Name1'].replace('-', ' ')
@@ -76,16 +76,17 @@ class lead_list(object):
 
                 updated_row1 = self.clean_company_names(row)
                 updated_row2 = self.label_decision_maker(updated_row1)
-                updated_row3 = self.label_sales_buyer(updated_row2)
-                updated_row4 = self.label_marketing_buyer(updated_row3)
-                updated_row5 = self.label_bi_buyer(updated_row4)
-                updated_row6 = self.label_oem_buyer(updated_row5)
-                updated_row7 = self.label_analytics_buyer(updated_row6)
+                updated_row3 = self.label_title(updated_row2)
+                updated_row4 = self.label_sales_buyer(updated_row3)
+                updated_row5 = self.label_marketing_buyer(updated_row4)
+                updated_row6 = self.label_bi_buyer(updated_row5)
+                updated_row7 = self.label_oem_buyer(updated_row6)
+                updated_row8 = self.label_analytics_buyer(updated_row7)
                 ##print updated_row
                 #if updated_row1 is not None:
                 #    count +=1
                 #acct_list.append(updated_row5)
-                acct_list.append(updated_row7)
+                acct_list.append(updated_row8)
                 self.acct_list = acct_list
                 #except:
                 #    pass
@@ -96,15 +97,15 @@ class lead_list(object):
 
                 """
                 if row['Decision Maker'] == True:
-                    if row['Sales Buyer'] == False and row['Marketing Buyer'] == False and row['BI Buyer'] == False and row['OEM Buyer'] == False:
+                    if row['Sales Title'] == False and row['Marketing Title'] == False and row['BI Title'] == False and row['OEM Title'] == False:
                         job_title_string = row['Job Title'].lower().strip()
                         print job_title_string
                 """
             """
             all_tokens =[]
             for row in acct_list:
-                if row['Sales Buyer'] == False and row['Marketing Buyer'] == False and row['BI Buyer'] == False and row['OEM Buyer'] == False and row['Decision Maker'] == True:
-                    #if row['BI Buyer'] == True and row['Sales Buyer'] == True:
+                if row['Sales Title'] == False and row['Marketing Title'] == False and row['BI Title'] == False and row['OEM Title'] == False and row['Decision Maker'] == True:
+                    #if row['BI Title'] == True and row['Sales Title'] == True:
                     #print row['Job Title'].lower().strip()
                     #all_tokens.append(row['Job Title'].lower().strip().split())
                     all_tokens.append(row['Job Title'].lower().strip())
@@ -164,197 +165,215 @@ class lead_list(object):
             row['Decision Maker'] = True
         """
 
-    def label_sales_buyer(self, row):
-        row['Sales Buyer'] = ''
+    def label_title(self, row):
+        row['Job Level'] = ''
         job_title_string = row['Job Title'].lower().strip()
         job_title_string_same_case =  row['Job Title'].strip()
-        #is a buyer
-        if row['Decision Maker'] == True:
-            #is in sales
-            if 'sales' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'channel' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'field operations' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'strategic accounts' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'business development' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'area' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'region' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'account executive' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'field' in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'development' in job_title_string and 'product' not in job_title_string:
-                row['Sales Buyer'] = True
-            elif 'cro' == job_title_string:
-                row['Sales Buyer'] = True
-            elif 'revenue' in job_title_string:
-                row['Sales Buyer'] = True
 
-            #not in sales
-            else:
-               row['Sales Buyer'] = False
+        #yes, is decision maker
+        if 'chief' in job_title_string:
+            row['Job Level'] = 'Chief'
+        elif 'director' in job_title_string:
+            row['Job Level'] = 'Director'
+        elif 'evp' in job_title_string:
+            row['Job Level'] = 'VP'
+        elif 'vice president' in job_title_string:
+            row['Job Level'] = 'VP'
+        elif 'vp' in job_title_string:
+            row['Job Level'] = 'VP'
+        elif 'head' in job_title_string:
+            row['Job Level'] = 'Director'
+        elif 'president' in job_title_string:
+            row['Job Level'] = 'Chief'
+        elif 'lead' in job_title_string:
+            row['Job Level'] = 'Director'
+        elif 'executive' in job_title_string:
+            row['Job Level'] = 'Chief'
+        elif 'owner' in job_title_string:
+            row['Job Level'] = 'Chief'
+        elif 'general manager' in job_title_string:
+            row['Job Level'] = 'Director'
+        elif job_title_string in ['ceo', 'cfo', 'coo', 'cio', 'cto', 'vp', 'cmo', 'cdo']:
+            row['Job Level'] = 'Chief'
+
         else:
-             row['Sales Buyer'] = False
+            row['Job Level'] = 'Below Director'
+        return row
+
+
+    def label_sales_buyer(self, row):
+        row['Sales Title'] = ''
+        job_title_string = row['Job Title'].lower().strip()
+        job_title_string_same_case =  row['Job Title'].strip()
+
+        if 'sales' in job_title_string:
+            row['Sales Title'] = True
+        elif 'channel' in job_title_string:
+            row['Sales Title'] = True
+        elif 'field operations' in job_title_string:
+            row['Sales Title'] = True
+        elif 'strategic accounts' in job_title_string:
+            row['Sales Title'] = True
+        elif 'business development' in job_title_string:
+            row['Sales Title'] = True
+        elif 'area' in job_title_string:
+            row['Sales Title'] = True
+        elif 'region' in job_title_string:
+            row['Sales Title'] = True
+        elif 'account executive' in job_title_string:
+            row['Sales Title'] = True
+        elif 'field' in job_title_string:
+            row['Sales Title'] = True
+        elif 'development' in job_title_string and 'product' not in job_title_string:
+            row['Sales Title'] = True
+        elif 'cro' == job_title_string:
+            row['Sales Title'] = True
+        elif 'revenue' in job_title_string:
+            row['Sales Title'] = True
+
+        #not in sales
+        else:
+           row['Sales Title'] = False
+
         return row
 
     def label_marketing_buyer(self, row):
-        row['Marketing Buyer'] = ''
+        row['Marketing Title'] = ''
         job_title_string = row['Job Title'].lower().strip()
         job_title_string_same_case =  row['Job Title'].strip()
-        #is a buyer
-        if row['Decision Maker'] == True:
-            #is in sales
-            if 'marketing' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'demand generation' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'digital' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'online' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'advertising' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'media' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'consumer programs' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'commerce' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'campaign' in job_title_string: #
-                row['Marketing Buyer'] = True
-            elif 'consumer' in job_title_string: #
-                row['Marketing Buyer'] = True
-            elif 'strateg' in job_title_string: #covers stategy and stragegic
-                row['Marketing Buyer'] = True
-            elif 'product' in job_title_string: #covers stategy and stragegic
-                row['Marketing Buyer'] = True
-            elif 'creative' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'cmo' == job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'communication' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'brand' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'br&' in job_title_string:
-                row['Marketing Buyer'] = True
-            elif 'merchandising' in job_title_string:
-                row['Marketing Buyer'] = True
-            #not in marketing
-            else:
-               row['Marketing Buyer'] = False
-        else:
-             row['Marketing Buyer'] = False
 
-        if row['Marketing Buyer'] == True:
+        #is in sales
+        if 'marketing' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'demand generation' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'digital' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'online' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'advertising' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'media' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'consumer programs' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'commerce' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'campaign' in job_title_string: #
+            row['Marketing Title'] = True
+        elif 'consumer' in job_title_string: #
+            row['Marketing Title'] = True
+        elif 'strateg' in job_title_string: #covers stategy and stragegic
+            row['Marketing Title'] = True
+        elif 'product' in job_title_string: #covers stategy and stragegic
+            row['Marketing Title'] = True
+        elif 'creative' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'cmo' == job_title_string:
+            row['Marketing Title'] = True
+        elif 'communication' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'brand' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'br&' in job_title_string:
+            row['Marketing Title'] = True
+        elif 'merchandising' in job_title_string:
+            row['Marketing Title'] = True
+        #not in marketing
+        else:
+           row['Marketing Title'] = False
+
+        if row['Marketing Title'] == True:
             pass
             #print job_title_string
         return row
 
     def label_bi_buyer(self, row):
-        row['BI Buyer'] = ''
+        row['BI Title'] = ''
         job_title_string = row['Job Title'].lower().strip()
         job_title_string_same_case =  row['Job Title'].strip()
-        #is a buyer
-        if row['Decision Maker'] == True:
-            #is in BI
-            if 'BI' in job_title_string_same_case: #BI
-                row['BI Buyer'] = True
-            elif 'business intelligence' in job_title_string: #BI
-                row['BI Buyer'] = True
-            elif 'analytics' in job_title_string: #analytics
-                row['BI Buyer'] = True
-            elif 'data' in job_title_string: #analytics
-                row['BI Buyer'] = True
-            elif 'cloud' in job_title_string: #IT, number of counts
-                row['BI Buyer'] = True
-            elif 'cdo' == job_title_string: #
-                row['BI Buyer'] = True
-            elif 'cio' == job_title_string:
-                row['BI Buyer'] = True
-            elif 'information' in job_title_string:
-                row['BI Buyer'] = True
-            elif 'IT' in job_title_string_same_case:#
-                row['BI Buyer'] = True
-            elif 'technology' in job_title_string:
-                row['BI Buyer'] = True
-            elif 'architect' in job_title_string:
-                row['BI Buyer'] = True
-            elif 'bi ' in job_title_string: #same with BI
-                row['BI Buyer'] = True
-            #not in sales
-            else:
-               row['BI Buyer'] = False
+        #is in BI
+        if 'BI' in job_title_string_same_case: #BI
+            row['BI Title'] = True
+        elif 'business intelligence' in job_title_string: #BI
+            row['BI Title'] = True
+        elif 'analytics' in job_title_string: #analytics
+            row['BI Title'] = True
+        elif 'data' in job_title_string: #analytics
+            row['BI Title'] = True
+        elif 'cloud' in job_title_string: #IT, number of counts
+            row['BI Title'] = True
+        elif 'cdo' == job_title_string: #
+            row['BI Title'] = True
+        elif 'cio' == job_title_string:
+            row['BI Title'] = True
+        elif 'information' in job_title_string:
+            row['BI Title'] = True
+        elif 'IT' in job_title_string_same_case:#
+            row['BI Title'] = True
+        elif 'technology' in job_title_string:
+            row['BI Title'] = True
+        elif 'architect' in job_title_string:
+            row['BI Title'] = True
+        elif 'bi ' in job_title_string: #same with BI
+            row['BI Title'] = True
+        #not in sales
         else:
-             row['BI Buyer'] = False
-
-        if row['BI Buyer'] == True:
+           row['BI Title'] = False
+        if row['BI Title'] == True:
             pass
             #print job_title_string
         return row
 
 
     def label_oem_buyer(self, row):
-        row['OEM Buyer'] = ''
+        row['OEM Title'] = ''
         job_title_string = row['Job Title'].lower().strip()
         job_title_string_same_case =  row['Job Title'].strip()
-        #is a buyer
-        if row['Decision Maker'] == True:
-            #is in sales
-            if 'engineer' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'product' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'strateg' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'application' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'r&d' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'cto' == job_title_string:
-                row['OEM Buyer'] = True
-            elif 'ceo' == job_title_string:
-                row['OEM Buyer'] = True
-            elif 'technology' in job_title_string:
-                row['OEM Buyer'] = True
-            elif 'developer' in job_title_string:
-                row['OEM Buyer'] = True
-            #not in sales
-            else:
-               row['OEM Buyer'] = False
+        #is in sales
+        if 'engineer' in job_title_string:
+            row['OEM Title'] = True
+        elif 'product' in job_title_string:
+            row['OEM Title'] = True
+        elif 'strateg' in job_title_string:
+            row['OEM Title'] = True
+        elif 'application' in job_title_string:
+            row['OEM Title'] = True
+        elif 'r&d' in job_title_string:
+            row['OEM Title'] = True
+        elif 'cto' == job_title_string:
+            row['OEM Title'] = True
+        elif 'ceo' == job_title_string:
+            row['OEM Title'] = True
+        elif 'technology' in job_title_string:
+            row['OEM Title'] = True
+        elif 'developer' in job_title_string:
+            row['OEM Title'] = True
+        #not in sales
         else:
-             row['OEM Buyer'] = False
+           row['OEM Title'] = False
 
-        if row['OEM Buyer'] == True:
+
+        if row['OEM Title'] == True:
             pass
             #print job_title_string
         return row
 
 
     def label_analytics_buyer(self, row):
-        row['Analytics Buyer'] = ''
+        row['Analytics Title'] = ''
         job_title_string = row['Job Title'].lower().strip()
         job_title_string_same_case =  row['Job Title'].strip()
-        #is a buyer
-        if row['Decision Maker'] == True:
-            #is in sales
-            if 'analytic' in job_title_string:
-                row['Analytics Buyer'] = True
-            elif 'analyst' in job_title_string:
-                row['Analytics Buyer'] = True
-            #not in sales
-            else:
-               row['Analytics Buyer'] = False
+        #is in sales
+        if 'analytic' in job_title_string:
+            row['Analytics Title'] = True
+        elif 'analyst' in job_title_string:
+            row['Analytics Title'] = True
+        #not in sales
         else:
-             row['Analytics Buyer'] = False
+           row['Analytics Title'] = False
 
-        if row['Analytics Buyer'] == True:
+        if row['Analytics Title'] == True:
             pass
             #print job_title_string
         return row
@@ -380,41 +399,41 @@ class lead_list(object):
         analytics_and_oem=0
         for row in self.acct_list:
             all_count+=1
-            if row['Decision Maker'] == True:
+            if row['Decision Maker'] == True :
                 decision_maker +=1
-            if row['Sales Buyer'] == True:
+            if row['Sales Title'] == True and row['Decision Maker'] == True:
                 sales_buyer +=1
-            if row['Marketing Buyer'] == True:
+            if row['Marketing Title'] == True and row['Decision Maker'] == True:
                 marketing_buyer +=1
-            if row['BI Buyer'] == True:
+            if row['BI Title'] == True and row['Decision Maker'] == True:
                 bi_buyer +=1
-            if row['OEM Buyer'] == True:
+            if row['OEM Title'] == True and row['Decision Maker'] == True:
                 oem_buyer +=1
-            if row['Analytics Buyer'] == True:
+            if row['Analytics Title'] == True and row['Decision Maker'] == True:
                 analytics_buyer += 1
             #combinations
-            if  row['Sales Buyer'] == True and row['Marketing Buyer'] == True:
+            if  row['Sales Title'] == True and row['Marketing Title'] == True and row['Decision Maker'] == True:
                 marketing_and_sales +=1
-            if row['BI Buyer'] == True and row['OEM Buyer'] == True:
+            if row['BI Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 bi_and_oem +=1
 
-            if  row['Sales Buyer'] == True and row['BI Buyer'] == True:
+            if  row['Sales Title'] == True and row['BI Title'] == True and row['Decision Maker'] == True:
                 sales_and_bi +=1
-            if row['Sales Buyer'] == True and row['OEM Buyer'] == True:
+            if row['Sales Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 sales_and_oem +=1
-            if  row['Marketing Buyer'] == True and row['BI Buyer'] == True:
+            if  row['Marketing Title'] == True and row['BI Title'] == True and row['Decision Maker'] == True:
                 marketing_and_bi +=1
-            if row['Marketing Buyer'] == True and row['OEM Buyer'] == True:
+            if row['Marketing Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 marketing_and_oem +=1
-            #if row['Analytics Buyer'] == True and row['Marketing Buyer'] == True:
+            #if row['Analytics Title'] == True and row['Marketing Title'] == True:
             #    analytics_and_marketing +=1
-            #if row['Analytics Buyer'] == True and row['Sales Buyer'] == True:
+            #if row['Analytics Title'] == True and row['Sales Title'] == True:
             #    analytics_and_sales +=1
-            #if row['Analytics Buyer'] == True and row['BI Buyer'] == True:
+            #if row['Analytics Title'] == True and row['BI Title'] == True:
             #    analytics_and_bi +=1
-            #if row['Analytics Buyer'] == True and row['OEM Buyer'] == True:
+            #if row['Analytics Title'] == True and row['OEM Title'] == True:
             #    analytics_and_oem +=1
-            if row['Decision Maker'] == True and row['Sales Buyer'] == False and row['Marketing Buyer'] == False and row['BI Buyer'] == False and row['OEM Buyer'] == False:
+            if row['Decision Maker'] == True and row['Sales Title'] == False and row['Marketing Title'] == False and row['BI Title'] == False and row['OEM Title'] == False:
                 decision_maker_no_business +=1
 
         print "all count: " +str(all_count) #2191246
@@ -436,10 +455,11 @@ class lead_list(object):
     def get_counts_by_var(self, var='Cleaned Revenue'):
         all_count = {'title':'All Leads'}
         decision_maker = {'title':'Decision Makers'}
-        sales_buyer={'title':'Sales Buyer'}
-        marketing_buyer={'title':'Marketing Buyer'}
-        bi_buyer={'title':'BI Buyer'}
-        oem_buyer={'title':'OEM Buyer'}
+        sales_buyer={'title':'Sales Title'}
+        marketing_buyer={'title':'Marketing Title'}
+        bi_buyer={'title':'BI Title'}
+        oem_buyer={'title':'OEM Title'}
+        analytics_buyer={'title': 'Analytics Title'}
         marketing_and_sales = {'title':'Marketing and Sales'}
         bi_and_oem={'title':'BI and OEM'}
         sales_and_bi = {'title':'Sales and BI'}
@@ -470,29 +490,31 @@ class lead_list(object):
             all_count[row[var]]+=1
             if row['Decision Maker'] == True:
                  decision_maker[row[var]] +=1
-            if row['Sales Buyer'] == True:
+            if row['Sales Title'] == True and row['Decision Maker'] == True:
+                print row
+                print sales_buyer[row[var]]
                 sales_buyer[row[var]] +=1
-            if row['Marketing Buyer'] == True:
+            if row['Marketing Title'] == True and row['Decision Maker'] == True:
                 marketing_buyer[row[var]] +=1
-            if row['BI Buyer'] == True:
+            if row['BI Title'] == True and row['Decision Maker'] == True:
                 bi_buyer[row[var]] +=1
-            if row['OEM Buyer'] == True:
+            if row['OEM Title'] == True and row['Decision Maker'] == True:
                 oem_buyer[row[var]] +=1
             #combinations
-            if  row['Sales Buyer'] == True and row['Marketing Buyer'] == True:
+            if  row['Sales Title'] == True and row['Marketing Title'] == True and row['Decision Maker'] == True:
                 marketing_and_sales[row[var]] +=1
-            if row['BI Buyer'] == True and row['OEM Buyer'] == True:
+            if row['BI Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 bi_and_oem[row[var]] +=1
 
-            if  row['Sales Buyer'] == True and row['BI Buyer'] == True:
+            if  row['Sales Title'] == True and row['BI Title'] == True and row['Decision Maker'] == True:
                 sales_and_bi[row[var]] +=1
-            if row['Sales Buyer'] == True and row['OEM Buyer'] == True:
+            if row['Sales Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 sales_and_oem[row[var]] +=1
-            if  row['Marketing Buyer'] == True and row['BI Buyer'] == True:
+            if  row['Marketing Title'] == True and row['BI Title'] == True and row['Decision Maker'] == True:
                 marketing_and_bi[row[var]] +=1
-            if row['Marketing Buyer'] == True and row['OEM Buyer'] == True:
+            if row['Marketing Title'] == True and row['OEM Title'] == True and row['Decision Maker'] == True:
                 marketing_and_oem[row[var]] +=1
-            if row['Decision Maker'] == True and row['Sales Buyer'] == False and row['Marketing Buyer'] == False and row['BI Buyer'] == False and row['OEM Buyer'] == False:
+            if row['Decision Maker'] == True and row['Sales Title'] == False and row['Marketing Title'] == False and row['BI Title'] == False and row['OEM Title'] == False:
                 decision_maker_no_business[row[var]] +=1
 
         """
@@ -588,3 +610,7 @@ class lead_list(object):
         print updated_row
         return updated_row
 
+input = 'C:/Users/wkuffel/Desktop/Marketing Data/20150130 marketo update/input files/raw marketing list.csv'
+output = 'C:/Users/wkuffel/Desktop/Marketing Data/20150130 marketo update/output files/marketing list processed.csv'
+
+lead_list(input,output)

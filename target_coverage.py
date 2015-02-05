@@ -1,11 +1,11 @@
 __author__ = 'wkuffel'
 
 import csv
-from fuzzywuzzy import fuzz
-
+#from fuzzywuzzy import fuzz
+from  leads_by_target_account import lead_types_by_target_accounts
 
 class target_coverage(object):
-    def __init__(self, target_account_ds_filepath, marketing_ds_filepath, out_path, for_marketo = False):
+    def __init__(self, target_account_ds_filepath, marketing_ds_filepath, out_path, for_marketo = False, from_complete = False):
         self.marketing_ds_filepath = marketing_ds_filepath
         self.target_account_ds_filepath = target_account_ds_filepath
         self.out_path = out_path
@@ -22,10 +22,10 @@ class target_coverage(object):
 
     def write_to_csv_marketo(self):
         with open(self.out_path, 'w') as write_csv:
-            writer = csv.DictWriter(write_csv, fieldnames= ['Id', 'Email Address', 'Decision Maker', 'Sales Buyer', 'Marketing Buyer', 'BI Buyer', 'OEM Buyer', 'Target Account' ], lineterminator = '\n')
+            writer = csv.DictWriter(write_csv, fieldnames= ['Id', 'Email Address', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title', 'Target Account' ], lineterminator = '\n')
             writer.writeheader()
             for row in self.concatendated_ds:
-                updated_row = {x: row[x] for x in row if x in ['Id', 'Email Address', 'Decision Maker', 'Sales Buyer', 'Marketing Buyer', 'BI Buyer', 'OEM Buyer', 'Target Account']}
+                updated_row = {x: row[x] for x in row if x in ['Id', 'Email Address', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title', 'Target Account']}
                 writer.writerow(updated_row)
 
 
@@ -90,14 +90,66 @@ class target_coverage(object):
         self.concatendated_ds = concatenated_ds
 
     def write_to_csv(self):
-        with open(self.out_path, 'w') as write_csv:
-            writer = csv.DictWriter(write_csv, fieldnames= ['Id', 'First Name','Last Name', 'Email Address', 'Phone Number', 'SFDC Type', 'Company Name', 'Job Title','Annual Company Revenue Range', 'Company Industries', 'Annual Company Revenue Range (A)', 'Company Employee Range',   'Lead Status', 'Lead Source', 'Updated At', 'Lead Score', 'Decision Maker', 'Sales Buyer', 'Marketing Buyer', 'BI Buyer', 'OEM Buyer', 'Analytics Buyer', 'Clean Company Name1', 'HQ Country','Country','Region', 'State', 'HQ State'] + ['Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+        try:
+            with open(self.out_path, 'w') as write_csv:
+                writer = csv.DictWriter(write_csv, fieldnames=['Id', 'First Name','Last Name', 'Email Address', 'Phone Number', 'SFDC Type', 'Company Name', 'Job Title','Annual Company Revenue Range', 'Company Industries', 'Annual Company Revenue Range (A)', 'Company Employee Range',   'Lead Status', 'Lead Source', 'Updated At', 'Lead Score', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title', 'Title Group', 'Clean Company Name1', 'HQ Country','Country','Region', 'State', 'HQ State'] + ['Target Account', 'Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+
+                #['Target Account', 'ID', 'Account Name', 'Primary Industry', 'Industry Breakout (from Count Tab)', 'Owner', 'Description', 'Revenue(USD)', 'Employees', 'Ownership', 'Ticker Symbol', 'SIC (US)', 'Primary NAICS', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Phone', 'Fax', 'Website', 'Parent ID', 'Parent Name', 'Ultimate Parent ID', 'Ultimate Parent Name', 'Data Source(s)', 'Lead Source', 'EFX ID', ' Description', ' Primary Industry', 'Clean Company Name'], lineterminator = '\n')
+                #'Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+                #['Clean Company Name', 'Industry', 'Revenue ($M)', 'Owner', 'Notes']
+                #['Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+                #['Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name']
+                writer.writeheader()
+                for row in self.concatendated_ds:
+                    writer.writerow(row)
+        except:
+            with open('C:/Users/wkuffel/Desktop/Marketing Data/exception file/exception.csv', 'w') as write_csv:
+                writer = csv.DictWriter(write_csv, fieldnames=['Id', 'First Name','Last Name', 'Email Address', 'Phone Number', 'SFDC Type', 'Company Name', 'Job Title','Annual Company Revenue Range', 'Company Industries', 'Annual Company Revenue Range (A)', 'Company Employee Range',   'Lead Status', 'Lead Source', 'Updated At', 'Lead Score', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title', 'Title Group', 'Clean Company Name1', 'HQ Country','Country','Region', 'State', 'HQ State'] + ['Target Account', 'Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+
+                #['Target Account', 'ID', 'Account Name', 'Primary Industry', 'Industry Breakout (from Count Tab)', 'Owner', 'Description', 'Revenue(USD)', 'Employees', 'Ownership', 'Ticker Symbol', 'SIC (US)', 'Primary NAICS', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Phone', 'Fax', 'Website', 'Parent ID', 'Parent Name', 'Ultimate Parent ID', 'Ultimate Parent Name', 'Data Source(s)', 'Lead Source', 'EFX ID', ' Description', ' Primary Industry', 'Clean Company Name'], lineterminator = '\n')
+                #'Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+                #['Clean Company Name', 'Industry', 'Revenue ($M)', 'Owner', 'Notes']
+                #['Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
+                #['Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name']
+                writer.writeheader()
+                for row in self.concatendated_ds:
+                    writer.writerow(row)
+
+
+
+
+class target_from_complete(object):
+    def __init__(self, filepath, outpath):
+        self.filepath =filepath
+        self.outpath = outpath
+
+        self.import_file()
+        self.write_to_csv_marketo()
+
+
+    def import_file(self):
+        with open(self.filepath) as complete_file_obj:
+            complete_file_reader = csv.DictReader(complete_file_obj)
+            complete_file = []
+            for row in complete_file_reader:
+               complete_file.append(row)
+            self.complete_file = complete_file
+
+    def write_to_csv_marketo(self):
+        with open(self.outpath, 'w') as write_csv:
+            writer = csv.DictWriter(write_csv, fieldnames= ['Id', 'Email Address', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title','Target Account' ], lineterminator = '\n')
             writer.writeheader()
-            for row in self.concatendated_ds:
-                writer.writerow(row)
+            for row in self.complete_file:
+                updated_row = {x: row[x] for x in row if x in ['Id', 'Email Address', 'Decision Maker', 'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Analytics Title',  'Target Account']}
+                writer.writerow(updated_row)
 
 
-
-
+#target_from_complete('C:/Users/wkuffel/Desktop/Marketing Data/combined full dataset.csv','C:/Users/wkuffel/Desktop/Marketing Data/combined full updated dataset marketo Kelly.csv')
 
 #target_coverage('C:/Users/wkuffel/Desktop/Marketing Data/target account list 20140115 will manipulated.csv','C:/Users/wkuffel/Desktop/Marketing Data/all Birst leads 20140115 will manipulated.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/combined full dataset.csv')
+
+all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/all Birst leads 20140122 will manipulated title.csv'
+targets = 'C:/Users/wkuffel/Desktop/Marketing Data/20150119 marketo update/output files/target account list 20150119 manipulated.csv'
+outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150122 carl request/converged all leads.csv'
+#target_coverage(targets, all_leads, outpath)
+lead_types_by_target_accounts(outpath,targets,'C:/Users/wkuffel/Desktop/Marketing Data/20150122 carl request/combined full dataset counts by acct.csv')
