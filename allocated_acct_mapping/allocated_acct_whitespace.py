@@ -8,7 +8,8 @@ class lead_types_by_target_accounts(object):
         self.path = path
         self.target_path = target_path
         self.out_path = out_path
-        self.writing_field_names_ordered = ['Account Name', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
+
+        self.writing_field_names_ordered = ['Account Name','Owner', 'Industry', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
         'Marketing - Chief',
         'Marketing - VP',
         'Marketing - Director',
@@ -69,7 +70,7 @@ class lead_types_by_target_accounts(object):
                 print count
             if row['Account Name'].strip() not in target_name_dict:
                 target_name_dict.append(row['Account Name'].strip())
-                account_dict = {'Account Name': row['Account Name'], 'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
+                account_dict = {'Account Name': row['Account Name'], 'Owner': row['Owner'], 'Industry': row[' Primary Industry'],   'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
                 'Marketing - Chief': 0,
                 'Marketing - VP': 0,
                 'Marketing - Director': 0,
@@ -93,7 +94,7 @@ class lead_types_by_target_accounts(object):
             if count % 10000 ==0:
                 print count
             #if lead["Matched"] == 'True':
-            if lead["Target Account"] == 'True':
+            if lead["Matched"] == 'True':
 
                 for item in range(len(output_dict)):
                     #print output_dict[item]
@@ -173,9 +174,9 @@ class lead_types_by_target_accounts(object):
 #targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
 #outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts.csv'
 
-all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset updated.csv'
-targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts previous run.csv'
+all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts matched.csv'
+targets = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts processed.csv'
+outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts and leads.csv'
 
 
 lead_types_by_target_accounts(all_leads,targets,outpath)
@@ -185,4 +186,3 @@ lead_types_by_target_accounts(all_leads,targets,outpath)
 #lead_types_by_target_accounts('C:/Users/wkuffel/Desktop/Marketing Data/20150120 allocated accounts/matched_results.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/20150120 allocated accounts/Birst allocated accounts manipulated.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150120 allocated accounts/allocated account mapping.csv')
 #lead_types_by_target_accounts('C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/Birst allocated accounts manipulated Full.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150120 allocated accounts/Birst allocated accounts manipulated.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/leads by account/allocated accounts manipulated counts by acct.csv')
 #lead_types_by_target_accounts('C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/Birst top 30 EMEA prospects maniplated Full.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150120 marketo update/output files/EMEA top 30 prospects 2015 manipulated.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/leads by account/top 30 EMEA prospects counts by acct.csv')
-#lead_types_by_target_accounts('C:/Users/wkuffel/Desktop/Marketing Data/20150122 carl request/Birst accounts manipulated Full.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150119 marketo update/output files/target account list 20150119 manipulated.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150122 carl request/combined full dataset counts by acct.csv')

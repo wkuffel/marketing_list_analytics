@@ -6,37 +6,38 @@ import pickle
 
 class match_leads_to_accounts(object):
 
-    def __init__(self, lead_file, account_file, out_file):
+    def __init__(self, lead_file, account_file, out_file, marketo_upload=False, picklepath = "C:/Users/wkuffel/Desktop/update unranked/Target accounts/parent_account_dict.p"):
         self.marketing_ds_filepath = lead_file
         self.target_account_ds_filepath = account_file
         self.out_path = out_file
-        self.parent_dict = pickle.load( open( "C:/Users/wkuffel/Desktop/Marketing Data/create account links/parent_account_dict.p", "rb" ) )
+        self.marketo_upload = marketo_upload
+        self.parent_dict = pickle.load( open( picklepath, "rb" ) )
         self.write_fields = ['Id',
+        'Full Name',
         'First Name',
         'Last Name',
-        'Full Name',
         'Job Title',
         'Phone Number',
         'Email Address',
-        'Country',
-        'State',
-        'Region',
-        'Annual Company Revenue Range (A)',
-        'Company Industries',
-        'Lead Score',
         'Lead Source',
+        'Company Name',
         'Lead Status',
-
+        'Lead Score',
+        'Country',
+        'Region',
+        'Company Industries',
+        'Annual Company Revenue Range (A)',
+        'State',
+        'InsideView Account ID',
 
         'Sales Title',
         'Marketing Title',
         'OEM Title',
         'BI Title',
         'Analytics Title',
-        'Decision Maker',
         'Operations Title',
-        'Job Level',
-         'InsideView Account ID',
+        'Decision Maker',
+        'Title Group',
         'Clean Company Name1',
 
         'Updated At',
@@ -44,11 +45,14 @@ class match_leads_to_accounts(object):
         'Annual Company Revenue Range',
         'SFDC Type',
         'Company Name',
+        "Lead Rank",
+        'Clean Company Name1',
 
         'Matched',
         'Clean Company Name',
         'Account ID',
         'Parent Account',
+        'Parent Account ID',
         'Account Name',
         'Account Type',
         'Account Owner',
@@ -64,7 +68,10 @@ class match_leads_to_accounts(object):
         'Sales Team',
         'is_child',
         'is_parent',
-        'Parent Account ID'
+        'Parent Account ID',
+        'InsideView Account ID Account',
+        '18-Char AccountId', 'Campaign Name',
+        'Matched Parent Account ID'
 
         ]
 
@@ -78,9 +85,23 @@ class match_leads_to_accounts(object):
 
         self.write_to_csv()
 
+
+
     def final_clean_up(self):
         final_ds = []
         for marketing_row in self.second_pass_new_ds:
+
+            if marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Director", 'Chief', 'Vice President']:
+                marketing_row["Lead Rank"] = 'A'
+            elif marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Below Director"]:
+                marketing_row["Lead Rank"] = 'B'
+            elif marketing_row["Matched"] == False and marketing_row["Title Group"] in ["Director", 'Chief', 'Vice President']:
+                marketing_row["Lead Rank"] = 'C'
+            elif marketing_row["Matched"] == False and marketing_row["Title Group"] in ["Below Director"]:
+                marketing_row["Lead Rank"] = 'D'
+
+
+
             if marketing_row["Matched"] == True:
                 for account_row in self.target_accounts_ds:
                     if account_row["Account ID"] == marketing_row["Matched Account ID"]:
@@ -89,15 +110,17 @@ class match_leads_to_accounts(object):
                         del marketing_row["Matched Account ID"]
                         del marketing_row["Matched is_child"]
                         del marketing_row["Matched is_parent"]
-                        del marketing_row["Matched Parent Account ID"]
                         #add attach the new one
                         marketing_row.update(account_row)
                         final_ds.append(marketing_row)
                         break
 
             else:
-                del marketing_row["Matched is_child"]
-                del marketing_row["Matched is_parent"]
+                try:
+                    del marketing_row["Matched is_child"]
+                    del marketing_row["Matched is_parent"]
+                except:
+                    pass
                 final_ds.append(marketing_row)
 
         self.final_ds = final_ds
@@ -121,13 +144,14 @@ class match_leads_to_accounts(object):
     def match_parent_child(self):
         second_pass_new_ds = []
         for marketing_row in self.first_pass_new_ds:
-            if marketing_row["Matched is_parent"] == "True":
+
+            if marketing_row["Matched is_parent"] == "True" and (marketing_row['InsideView Account ID'] != marketing_row['InsideView Account ID Account']):
                 comp_parent_dict = self.parent_dict[marketing_row["Matched Account ID"]]
                 new_marketing_row = self.best_match(marketing_row,comp_parent_dict.values())
 
 
                 second_pass_new_ds.append(new_marketing_row)
-            elif marketing_row["Matched is_child"] == True:
+            elif marketing_row["Matched is_child"] == True and (marketing_row['InsideView Account ID'] != marketing_row['InsideView Account ID Account']):
                 comp_parent_dict = self.parent_dict[marketing_row["Matched Parent Account ID"]]
                 new_marketing_row = self.best_match(marketing_row,comp_parent_dict.values())
                 second_pass_new_ds.append(new_marketing_row)
@@ -169,16 +193,31 @@ class match_leads_to_accounts(object):
             marketing_row["Matched is_parent"] = None
 
             for account_row in self.target_accounts_ds:
-                if marketing_row["Clean Company Name1"] == account_row["Clean Company Name"]:
+                if marketing_row["InsideView Account ID"] == account_row["InsideView Account ID"] and account_row["InsideView Account ID"] != '':
                     match_count +=1
                     marketing_row["Matched"] = True
                     marketing_row["Matched Clean Name"] = account_row['Clean Company Name']
                     marketing_row["Matched Account ID"] = account_row['Account ID']
                     marketing_row["Matched is_child"] = account_row['is_child']
                     marketing_row["Matched is_parent"] = account_row['is_parent']
+                    marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
                     marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
                     #self.first_pass_new_ds.append(marketing_row)
                     break
+
+            if marketing_row['Matched'] == False:
+                for account_row in self.target_accounts_ds:
+                    if marketing_row["Clean Company Name1"] == account_row["Clean Company Name"]:
+                        match_count +=1
+                        marketing_row["Matched"] = True
+                        marketing_row["Matched Clean Name"] = account_row['Clean Company Name']
+                        marketing_row["Matched Account ID"] = account_row['Account ID']
+                        marketing_row["Matched is_child"] = account_row['is_child']
+                        marketing_row["Matched is_parent"] = account_row['is_parent']
+                        marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
+                        marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
+                        #self.first_pass_new_ds.append(marketing_row)
+                        break
 
             if marketing_row['Matched'] == False:
                 for account_row in self.target_accounts_ds:
@@ -189,6 +228,7 @@ class match_leads_to_accounts(object):
                         marketing_row["Matched Account ID"] = account_row['Account ID']
                         marketing_row["Matched is_child"] = account_row['is_child']
                         marketing_row["Matched is_parent"] = account_row['is_parent']
+                        marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
                         marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
                         #self.first_pass_new_ds.append(marketing_row)
                         break
@@ -200,6 +240,7 @@ class match_leads_to_accounts(object):
                         marketing_row["Matched Account ID"] = account_row['Account ID']
                         marketing_row["Matched is_child"] = account_row['is_child']
                         marketing_row["Matched is_parent"] = account_row['is_parent']
+                        marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
                         marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
                         #self.first_pass_new_ds.append(marketing_row)
                         break
@@ -216,6 +257,7 @@ class match_leads_to_accounts(object):
                             marketing_row["Matched Account ID"] = account_row['Account ID']
                             marketing_row["Matched is_child"] = account_row['is_child']
                             marketing_row["Matched is_parent"] = account_row['is_parent']
+                            marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
                             marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
                             #self.first_pass_new_ds.append(marketing_row)
                             break
@@ -223,17 +265,14 @@ class match_leads_to_accounts(object):
                         pass
 
 
-            if marketing_row['Clean Company Name1'] in ['a', 'unknown', 'test', 'private', 'store', 'retired', 'self'] or len(marketing_row['Clean Company Name1'])==1:
+            if marketing_row['Matched'] == True and (marketing_row['Clean Company Name1'] in ['a', 'unknown', 'test', 'private', 'store', 'retired'] or len(marketing_row['Clean Company Name1'])==1):
                 marketing_row["Matched"] = False
-                try:
-                    del marketing_row["Matched Clean Name"]
-                    del marketing_row["Matched Account ID"]
-                    marketing_row["Matched is_child"] =None
-                    marketing_row["Matched is_parent"] = None
-                    del marketing_row["Matched Parent Account ID"]
-                    match_count -=1
-                except:
-                    pass
+                del marketing_row["Matched Clean Name"]
+                del marketing_row["Matched Account ID"]
+                marketing_row["Matched is_child"] =None
+                marketing_row["Matched is_parent"] = None
+                del marketing_row["Matched Parent Account ID"]
+                match_count -=1
 
             if match_count %10000 == 0:
                 print "Match Count: " + str(match_count)
@@ -244,109 +283,29 @@ class match_leads_to_accounts(object):
             self.first_pass_new_ds.append(marketing_row)
 
         print len(self.first_pass_new_ds)
-    """
-    def match_datasets(self):
-        match_count = 0, record_count = 0
-        concatenated_ds = []
-        for row_marketing in self.marketing_ds[:10000]:
-            record_count +=1
-            if record_count %5000 ==0:
-                print "row count: " + str(record_count)
 
-            row_marketing["Target Account"] = False
-
-            # 1) equality match
-            for row_target in self.target_accounts_ds:
-                if row_marketing["Clean Company Name1"] == row_target["Clean Company Name"]:
-                    row_marketing.update(row_target)
-                    row_marketing["Target Account"] = True
-                    #concatenated_ds.append(row_marketing)
-                    match_count +=1
-                    if match_count %5000 ==0:
-                        print "match count: " + str(match_count)
-                    break
-
-            # 2) contains match, robust
-
-            if row_marketing["Target Account"] == False:
-                for row_target in self.target_accounts_ds:
-                    if row_target["Clean Company Name"] in row_marketing["Clean Company Name1"] and len(row_target["Clean Company Name"])>=4:
-                        if fuzz.token_set_ratio(row_target["Clean Company Name"], row_marketing["Clean Company Name1"])>90:
-                            if match_count %5000 ==0:
-                                print "match count: " + str(match_count)
-
-                            if not row_target['is_parent'] and not row_target['is_child']:
-                                row_marketing.update(row_target)
-                                row_marketing["Target Account"] = True
-                                #concatenated_ds.append(row_marketing)
-                                match_count +=1
-                            elif row_target['is_parent']:
-
-                            elif row_target['is_child']:
-
-
-                            break
-
-                    elif row_marketing["Clean Company Name1"] in row_target["Clean Company Name"] and len(row_marketing["Clean Company Name1"])>=4:
-                        if fuzz.token_set_ratio(row_target["Clean Company Name"], row_marketing["Clean Company Name1"])>90:
-                            if match_count %5000 ==0:
-                                print "match count: " + str(match_count)
-
-                            if not row_target['is_parent'] and not row_target['is_child']:
-                                row_marketing.update(row_target)
-                                row_marketing["Target Account"] = True
-                                #concatenated_ds.append(row_marketing)
-                                match_count +=1
-                            elif row_target['is_parent']:
-
-                            elif row_target['is_child']:
-
-
-                            break
-
-            if row_marketing["Target Account"] == False:
-                for row_target in self.target_accounts_ds:
-                    try:
-                        if row_target["Clean Company Name"].split()[0] == row_marketing["Clean Company Name1"].split()[0]:
-                            if fuzz.token_set_ratio(row_target["Clean Company Name"], row_marketing["Clean Company Name1"])>85:
-                                if match_count %5000 ==0:
-                                print "match count: " + str(match_count)
-
-                            if not row_target['is_parent'] and not row_target['is_child']:
-                                row_marketing.update(row_target)
-                                row_marketing["Target Account"] = True
-                                #concatenated_ds.append(row_marketing)
-                                match_count +=1
-                            elif row_target['is_parent']:
-
-                            elif row_target['is_child']:
-
-
-                            break
-                    except:
-                        pass
-
-            if row_marketing['Target Account'] == True and row_marketing["Clean Company Name1"] in ['test', 'self']:
-                row_marketing['Target Account'] = False
-
-
-            concatenated_ds.append(row_marketing)
-
-
-
-        self.concatendated_ds = concatenated_ds
-    """
 
     def write_to_csv(self):
         #try:
-        with open(self.out_path, 'w') as write_csv:
-            writer = csv.DictWriter(write_csv, fieldnames=self.write_fields , lineterminator = '\n')
+        self.additional_fields= []
+        if self.marketo_upload == True:
 
-            #['Target Account', 'ID', 'Account Name', 'Primary Industry', 'Industry Breakout (from Count Tab)', 'Owner', 'Description', 'Revenue(USD)', 'Employees', 'Ownership', 'Ticker Symbol', 'SIC (US)', 'Primary NAICS', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Phone', 'Fax', 'Website', 'Parent ID', 'Parent Name', 'Ultimate Parent ID', 'Ultimate Parent Name', 'Data Source(s)', 'Lead Source', 'EFX ID', ' Description', ' Primary Industry', 'Clean Company Name'], lineterminator = '\n')
-            #'Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
-            #['Clean Company Name', 'Industry', 'Revenue ($M)', 'Owner', 'Notes']
-            #['Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name'], lineterminator = '\n')
-            #['Target Account','Account ID','Account Name','Equifax ID','Account Owner', 'Region', 'Sales Team', 'Account Type','Industry','Company Employee Range','Annual Company Revenue Range','Total Opportunities','Total Won Opportunities','Total Won Opportunity Value','Total Open Opportunities','HQ Country','HQ State','HQ Zip','Account Status','Clean Company Name']
+            self.write_fields = ["Matched", "Email Address", "Sales Title", "Marketing Title", "OEM Title", "BI Title", "Analytics Title","Operations Title", "Title Group", "Decision Maker", "Lead Rank", 'InsideView Account ID (L)']
+            self.additional_fields = ['Account']
+            final_ds = []
+            for row in self.final_ds:
+                row['InsideView Account ID (L)'] = row['InsideView Account ID']
+                del row['InsideView Account ID']
+
+                if row['Matched']:
+                    final_ds.append({field: row[field] for field in self.write_fields + self.additional_fields})
+                else:
+                    final_ds.append({field: row[field] for field in self.write_fields})
+            self.final_ds = final_ds
+            #self.final_ds = [{field: row[field] for field in self.write_fields} for row in self.final_ds]
+
+        with open(self.out_path, 'w') as write_csv:
+            writer = csv.DictWriter(write_csv, fieldnames=self.write_fields + self.additional_fields , lineterminator = '\n')
             writer.writeheader()
             for row in self.final_ds:
                 print row
@@ -357,15 +316,8 @@ class match_leads_to_accounts(object):
 
 
 
+#lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/leads/marketing list processed.csv'
+#account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
+#out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/matched results.csv'
+#match_leads_to_accounts(lead_file, account_file, out_file)
 
-
-
-
-
-
-
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list raw processed.csv'
-account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list raw matched.csv'
-
-match_leads_to_accounts(lead_file, account_file, out_file)

@@ -2,21 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73f87acd-e0c1-4509-9fc4-062356c8102f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/clean_account_name.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/emea_account_list.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/process_titles.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target_coverage_stricter_match.py" />
-      <change type="DELETED" beforePath="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\lead_list_processing.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account_list_processing.py" afterPath="$PROJECT_DIR$/account_list_processing.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Campaign Reporting/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/EMEA marketo update/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allocated_acct_mapping/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/automate marketo update/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/list processing/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/netprospex/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/add_field_to_old.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_processing.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_whitespace.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/clean_account_name.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_analytics_title.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_bi_buyer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_consultant.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_embedded_buyer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_maketing_buyer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_non_work_email.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_operations_buyer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_sales_buyer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master_functions/label_titles.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/list processing/lead_account_matching_strict_parents.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/netprospex/load_netproxpex.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allocated_acct_mapping/match_allocated_accts.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/netprospex/netprospecx_targets.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/EMEA marketo update/process_emea_accts.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/list processing/process_titles.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/automate marketo update/process_unranked_list.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/automate marketo update/run_full_matching.py" />
+      <change type="DELETED" beforePath="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\process_titles.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lead_list_processing2.py" afterPath="$PROJECT_DIR$/lead_list_processing2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/leads_by_target_account.py" afterPath="$PROJECT_DIR$/leads_by_target_account.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/marketo_excel_update/market_excel_update.py" afterPath="$PROJECT_DIR$/marketo_excel_update/market_excel_update.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/marketo/marketo_play.py" afterPath="$PROJECT_DIR$/marketo/marketo_play.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target_coverage.py" afterPath="$PROJECT_DIR$/target_coverage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" afterPath="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="marketing_list_analytics.iws" />
@@ -41,79 +61,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lead_list_processing2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lead_list_processing2.py">
+      <file leaf-file-name="run_full_matching.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/automate marketo update/run_full_matching.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.333333" vertical-offset="9789" max-vertical-offset="10557">
-              <caret line="615" column="23" selection-start-line="4" selection-start-column="0" selection-end-line="615" selection-end-column="23" />
+            <state vertical-scroll-proportion="-12.896552" vertical-offset="0" max-vertical-offset="527">
+              <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+              <folding>
+                <element signature="e#23#95#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="process_unranked_list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/automate marketo update/process_unranked_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.3793104" vertical-offset="32" max-vertical-offset="986">
+              <caret line="18" column="70" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="70" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="target_coverage_stricter_match.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target_coverage_stricter_match.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="3281">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="37" selection-end-column="44" />
-              <folding>
-                <element signature="e#23#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="process_mk_list.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5485" max-vertical-offset="6137">
-              <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="process_accounts.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1326">
-              <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
-              <folding>
-                <element signature="e#24#34#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="lead_account_matching_strict_parents.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py">
+        <entry file="file://$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35833332" vertical-offset="1477" max-vertical-offset="5933">
-              <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
-              <folding>
-                <element signature="e#24#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clean_account_name.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/clean_account_name.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.275862" vertical-offset="408" max-vertical-offset="1292">
-              <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+            <state vertical-scroll-proportion="8.075685" vertical-offset="0" max-vertical-offset="5559">
+              <caret line="297" column="48" selection-start-line="297" selection-start-column="48" selection-end-line="297" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="market_excel_update.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/marketo_excel_update/market_excel_update.py">
+      <file leaf-file-name="label_titles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/master_functions/label_titles.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="884">
-              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.43103448" vertical-offset="1181" max-vertical-offset="1666">
+              <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -138,24 +122,46 @@
         <option value="$PROJECT_DIR$/emea_account_list.py" />
         <option value="$PROJECT_DIR$/marketo_excel_update/market_excel_update.py" />
         <option value="$PROJECT_DIR$/target_coverage.py" />
-        <option value="$PROJECT_DIR$/leads_by_target_account.py" />
         <option value="$PROJECT_DIR$/account_list_processing.py" />
-        <option value="$PROJECT_DIR$/lead_list_processing2.py" />
-        <option value="$PROJECT_DIR$/process_titles.py" />
         <option value="$PROJECT_DIR$/marketo/marketo_play.py" />
         <option value="$PROJECT_DIR$/target_coverage_stricter_match.py" />
-        <option value="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" />
-        <option value="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" />
         <option value="$PROJECT_DIR$/account_mapping_to_sfdc/clean_account_name.py" />
+        <option value="$PROJECT_DIR$/lead_list_processing2.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_decision_maker.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_analytics_title.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_embedded_buyer.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_operations_buyer.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_sales_buyer.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_bi_buyer.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_maketing_buyer.py" />
+        <option value="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" />
+        <option value="$PROJECT_DIR$/master_functions/clean_account_name.py" />
+        <option value="$PROJECT_DIR$/netprospex/load_netproxpex.py" />
+        <option value="$PROJECT_DIR$/netprospex/netprospecx_targets.py" />
+        <option value="$PROJECT_DIR$/EMEA marketo update/process_emea_accts.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_consultant.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_non_work_email.py" />
+        <option value="$PROJECT_DIR$/process_titles.py" />
+        <option value="$PROJECT_DIR$/list processing/lead_account_matching_strict_parents.py" />
+        <option value="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" />
+        <option value="$PROJECT_DIR$/add_field_to_old.py" />
+        <option value="$PROJECT_DIR$/leads_by_target_account.py" />
+        <option value="$PROJECT_DIR$/allocated_acct_processing.py" />
+        <option value="$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_whitespace.py" />
+        <option value="$PROJECT_DIR$/allocated_acct_mapping/match_allocated_accts.py" />
         <option value="$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py" />
+        <option value="$PROJECT_DIR$/automate marketo update/run_full_matching.py" />
+        <option value="$PROJECT_DIR$/automate marketo update/process_unranked_list.py" />
+        <option value="$PROJECT_DIR$/master_functions/label_titles.py" />
+        <option value="$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1645" />
-    <option name="y" value="41" />
-    <option name="width" value="1250" />
-    <option name="height" value="849" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -180,6 +186,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,7 +215,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marketo_excel_update" />
+              <option name="myItemId" value="master_functions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -222,7 +229,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marketo" />
+              <option name="myItemId" value="automate marketo update" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marketing_list_analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marketing_list_analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="allocated_acct_mapping" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -240,9 +261,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marketing_list_analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marketing_list_analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Campaign Reporting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,8 +292,19 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.lead_account_matching_strict_parents">
-    <configuration default="false" name="process_titles" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\list processing" />
+      <recent name="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\automate marketo update" />
+      <recent name="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\master_functions" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\allocated_acct_mapping" />
+      <recent name="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\list processing" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.run_full_matching">
+    <configuration default="false" name="allocated_acct_processing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -271,64 +316,26 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="marketing_list_analytics" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/process_titles.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\wkuffel\PycharmProjects\marketing_list_analytics\allocated_acct_mapping\allocated_acct_processing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="marketo_play" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="allocated_acct_whitespace" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/marketo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/allocated_acct_mapping" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="marketing_list_analytics" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/marketo/marketo_play.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="process_accounts" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/account_mapping_to_sfdc" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="marketing_list_analytics" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="process_mk_list" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/account_mapping_to_sfdc" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="marketing_list_analytics" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_whitespace.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
@@ -342,12 +349,31 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/account_mapping_to_sfdc" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/automate marketo update" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="marketing_list_analytics" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="match_allocated_accts" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/allocated_acct_mapping" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="marketing_list_analytics" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/allocated_acct_mapping/match_allocated_accts.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
@@ -476,20 +502,38 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="run_full_matching" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/automate marketo update" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="marketing_list_analytics" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/automate marketo update/run_full_matching.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.process_titles" />
-      <item index="1" class="java.lang.String" itemvalue="Python.marketo_play" />
-      <item index="2" class="java.lang.String" itemvalue="Python.process_accounts" />
-      <item index="3" class="java.lang.String" itemvalue="Python.process_mk_list" />
-      <item index="4" class="java.lang.String" itemvalue="Python.lead_account_matching_strict_parents" />
+      <item index="0" class="java.lang.String" itemvalue="Python.run_full_matching" />
+      <item index="1" class="java.lang.String" itemvalue="Python.allocated_acct_processing" />
+      <item index="2" class="java.lang.String" itemvalue="Python.allocated_acct_whitespace" />
+      <item index="3" class="java.lang.String" itemvalue="Python.lead_account_matching_strict_parents" />
+      <item index="4" class="java.lang.String" itemvalue="Python.match_allocated_accts" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.lead_account_matching_strict_parents" />
-        <item index="1" class="java.lang.String" itemvalue="Python.process_accounts" />
-        <item index="2" class="java.lang.String" itemvalue="Python.process_mk_list" />
-        <item index="3" class="java.lang.String" itemvalue="Python.marketo_play" />
-        <item index="4" class="java.lang.String" itemvalue="Python.process_titles" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.allocated_acct_whitespace" />
+        <item index="1" class="java.lang.String" itemvalue="Python.lead_account_matching_strict_parents" />
+        <item index="2" class="java.lang.String" itemvalue="Python.match_allocated_accts" />
+        <item index="3" class="java.lang.String" itemvalue="Python.allocated_acct_processing" />
       </list>
     </recent_temporary>
   </component>
@@ -510,24 +554,29 @@
       <option name="project" value="LOCAL" />
       <updated>1421719617274</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="WMK 20150205 push of lead account matching strict parents">
+      <created>1423168758554</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1423168758554</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1645" y="41" width="1250" height="849" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28292182" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29802096" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25775978" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2884927" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28245363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2968961" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0625" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281027" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39917696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -536,6 +585,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -577,187 +627,37 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="WMK 20150119 Commit for github test" />
-    <option name="LAST_COMMIT_MESSAGE" value="WMK 20150119 Commit for github test" />
+    <MESSAGE value="WMK 20150205 push of lead account matching strict parents" />
+    <option name="LAST_COMMIT_MESSAGE" value="WMK 20150205 push of lead account matching strict parents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/automate marketo update/process_unranked_list.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1394">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketo/marketo_play.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="255">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account_list_processing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1564" max-vertical-offset="1683">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lead_list_processing2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8995" max-vertical-offset="10132">
-          <caret line="549" column="20" selection-start-line="549" selection-start-column="20" selection-end-line="549" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/limitations">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="765">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/summary_of_titles_targets_request">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1564">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target_coverage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="749" max-vertical-offset="1836">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketo_excel_update/market_excel_update.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1394">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketo/marketo_play.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="255">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account_list_processing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1683">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lead_list_processing2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1105" max-vertical-offset="10132">
-          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/limitations">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="765">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/summary_of_titles_targets_request">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1564">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target_coverage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1598">
-          <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="619" max-vertical-offset="1224">
-          <caret line="61" column="59" selection-start-line="61" selection-start-column="59" selection-end-line="61" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketo/marketo_play.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account_list_processing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1683">
-          <caret line="12" column="0" selection-start-line="11" selection-start-column="43" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lead_list_processing2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="10132">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="19" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/limitations">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="765">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/summary_of_titles_targets_request">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1564">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target_coverage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1598">
-          <caret line="24" column="44" selection-start-line="19" selection-start-column="7" selection-end-line="24" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8884" max-vertical-offset="10132">
           <caret line="539" column="43" selection-start-line="539" selection-start-column="43" selection-end-line="539" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1564">
           <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -795,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1598">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,7 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="527">
           <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,7 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="472">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -833,7 +728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1105" max-vertical-offset="1564">
           <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -841,17 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1462">
           <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding>
-            <element signature="e#47#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1343" max-vertical-offset="2074">
-          <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,7 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2130" max-vertical-offset="2737">
           <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -867,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.066667" vertical-offset="4114" max-vertical-offset="5678">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -875,23 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9333333" vertical-offset="1292" max-vertical-offset="2108">
           <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketo_excel_update/market_excel_update.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="884">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/csv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="7735">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,9 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5394" max-vertical-offset="13447">
           <caret line="127" column="11" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
-          <folding>
-            <element signature="e#929#940#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.39784947" vertical-offset="4611" max-vertical-offset="25177">
           <caret line="269" column="36" selection-start-line="269" selection-start-column="36" selection-end-line="269" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -917,81 +777,246 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.6551723" vertical-offset="987" max-vertical-offset="1700">
           <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-          <folding>
-            <element signature="e#722#733#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/account_list_processing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
+        <state vertical-scroll-proportion="-0.6484848" vertical-offset="496" max-vertical-offset="1768">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/marketo_excel_update/market_excel_update.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6125356" vertical-offset="182" max-vertical-offset="884">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lead_list_processing2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.333333" vertical-offset="9789" max-vertical-offset="10557">
-          <caret line="615" column="23" selection-start-line="4" selection-start-column="0" selection-end-line="615" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/process_titles.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.4827585" vertical-offset="851" max-vertical-offset="4284">
-          <caret line="79" column="41" selection-start-line="49" selection-start-column="8" selection-end-line="79" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5485" max-vertical-offset="6137">
-          <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#34#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="10557">
+          <caret line="76" column="55" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target_coverage_stricter_match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="3281">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="37" selection-end-column="44" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1326">
-          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
-          <folding>
-            <element signature="e#24#34#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.49377593" vertical-offset="0" max-vertical-offset="3281">
+          <caret line="21" column="35" selection-start-line="30" selection-start-column="0" selection-end-line="37" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/clean_account_name.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.275862" vertical-offset="408" max-vertical-offset="1292">
-          <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1292">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_sales_buyer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16639479" vertical-offset="0" max-vertical-offset="765">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_operations_buyer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24959217" vertical-offset="0" max-vertical-offset="613">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_analytics_title.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3981982" vertical-offset="0" max-vertical-offset="555">
+          <caret line="13" column="37" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_maketing_buyer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.526616" vertical-offset="233" max-vertical-offset="1054">
+          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/clean_account_name.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1010" max-vertical-offset="1513">
+          <caret line="71" column="58" selection-start-line="71" selection-start-column="58" selection-end-line="71" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netprospex/load_netproxpex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.9827585" vertical-offset="724" max-vertical-offset="1173">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netprospex/netprospecx_targets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.672414" vertical-offset="4511" max-vertical-offset="5406">
+          <caret line="312" column="24" selection-start-line="312" selection-start-column="24" selection-end-line="312" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_bi_buyer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="245" max-vertical-offset="765">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EMEA marketo update/process_emea_accts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_embedded_buyer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="663">
+          <caret line="33" column="14" selection-start-line="2" selection-start-column="0" selection-end-line="33" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_consultant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_non_work_email.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/list processing/process_titles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="691" max-vertical-offset="1224">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2203" max-vertical-offset="7735">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="546">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/list processing/lead_account_matching_strict_parents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5310736" vertical-offset="4314" max-vertical-offset="4845">
+          <caret line="83" column="51" selection-start-line="83" selection-start-column="51" selection-end-line="83" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_field_to_old.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="663">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_mk_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25801012" vertical-offset="170" max-vertical-offset="1309">
+          <caret line="19" column="0" selection-start-line="18" selection-start-column="43" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#34#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leads_by_target_account.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94266444" vertical-offset="2620" max-vertical-offset="3281">
+          <caret line="187" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/process_accounts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1326">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/account_mapping_to_sfdc/lead_account_matching_strict_parents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35833332" vertical-offset="1477" max-vertical-offset="5933">
-          <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+        <state vertical-scroll-proportion="9.342008" vertical-offset="907" max-vertical-offset="6358">
+          <caret line="351" column="25" selection-start-line="351" selection-start-column="25" selection-end-line="351" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allocated_acct_mapping/match_allocated_accts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.6229167" vertical-offset="659" max-vertical-offset="4709">
+          <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_whitespace.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.65625" vertical-offset="1441" max-vertical-offset="3298">
+          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allocated_acct_mapping/allocated_acct_processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68401486" vertical-offset="1332" max-vertical-offset="1870">
+          <caret line="100" column="91" selection-start-line="100" selection-start-column="91" selection-end-line="100" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automate marketo update/run_full_matching.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.896552" vertical-offset="0" max-vertical-offset="527">
+          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
           <folding>
-            <element signature="e#24#34#0" expanded="true" />
+            <element signature="e#23#95#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_functions/label_titles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43103448" vertical-offset="1181" max-vertical-offset="1666">
+          <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automate marketo update/process_unranked_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3793104" vertical-offset="32" max-vertical-offset="986">
+          <caret line="18" column="70" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automate marketo update/lead_account_matching_strict_parents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.075685" vertical-offset="0" max-vertical-offset="5559">
+          <caret line="297" column="48" selection-start-line="297" selection-start-column="48" selection-end-line="297" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

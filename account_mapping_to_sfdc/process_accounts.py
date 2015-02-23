@@ -1,7 +1,7 @@
 __author__ = 'wkuffel'
 
 import csv
-from clean_account_name import clean_account_name
+from master_functions.clean_account_name import clean_account_name
 import pickle
 
 
@@ -10,7 +10,7 @@ class process_accounts(object):
     def __init__(self, inpath, outpath):
         self.inpath = inpath
         self.outpath = outpath
-        self.writing_field_names_ordered = ['Account ID', 'Account Name', 'Account Status', 'Total Opportunities', 'Sales Team', 'Account Owner', 'Region', 'HQ Country', 'HQ State', 'HQ Zip', 'Total Won Opportunities', 'Total Won Opportunity Value', 'Total Open Opportunities',  'Industry', 'Company Employee Range', 'Annual Company Revenue Range',  'Parent Account ID', 'Parent Account','Account Type', 'is_parent', 'is_child', 'Clean Company Name']
+        self.writing_field_names_ordered = ['Account ID', 'Account Name', 'InsideView Account ID', 'Account Status', 'Total Opportunities', 'Sales Team', 'Account Owner', 'Region', 'HQ Country', 'HQ State', 'HQ Zip', 'Total Won Opportunities', 'Total Won Opportunity Value', 'Total Open Opportunities',  'Industry', 'Company Employee Range', 'Annual Company Revenue Range',  'Parent Account ID', 'Parent Account','Account Type', 'is_parent', 'is_child', 'Clean Company Name']
         self.parent_account_ids = {}
         self.import_csv()
         self.determine_parent_accounts()

@@ -263,7 +263,7 @@ class lead_list(object):
             row['Marketing Title'] = True
         elif 'consumer' in job_title_string: #
             row['Marketing Title'] = True
-        elif 'strateg' in job_title_string: #covers stategy and stragegic
+        elif 'strateg' in job_title_string and "IT" not in job_title_string_same_case: #covers stategy and stragegic
             row['Marketing Title'] = True
         elif 'product' in job_title_string: #covers stategy and stragegic
             row['Marketing Title'] = True
