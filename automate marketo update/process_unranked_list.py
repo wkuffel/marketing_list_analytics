@@ -8,15 +8,16 @@ from master_functions.label_embedded_buyer import label_embedded_buyer
 from master_functions.label_maketing_buyer import label_marketing_buyer
 from master_functions.label_titles import label_decision_maker, label_title
 from master_functions.label_operations_buyer import label_operations_buyer
-
+from master_functions.unique_buyer_type import unique_buyer_type
 
 class lead_list(object):
 
-    def __init__(self, in_path, out_path):
+    def __init__(self, in_path, out_path, buyer_type = None):
         self.path = in_path
         self.out_path = out_path
         self.writing_input_names = ['Id', 'Full Name', 'Job Title', 'Email Address', 'Phone Number', 'Lead Source',  'Company Name', 'Campaign Name','State', 'Postal Code']
         self.writing_add_titles = ['Clean Company Name1', 'Title Group', 'Sales Title',  'Marketing Title', 'OEM Title', 'BI Title', 'Operations Title', 'Analytics Title', 'Decision Maker', 'InsideView Account ID', 'Account', 'Region', 'Operations Buyer', 'Lead Rank' ]
+        self.buyer_type = buyer_type
         self.import_csv()
         self.write_to_csv()
 
@@ -25,7 +26,7 @@ class lead_list(object):
             writer = csv.DictWriter(write_csv, fieldnames=self.writing_input_names +  self.writing_add_titles, lineterminator = '\n')
             writer.writeheader()
             for row in self.acct_list:
-                print row
+                #print row
                 writer.writerow(row)
 
 
@@ -54,7 +55,12 @@ class lead_list(object):
                 updated_row7 = label_embedded_buyer(updated_row6)
                 updated_row8 = label_analytics_buyer(updated_row7)
                 updated_row9 = label_operations_buyer(updated_row8)
-                acct_list.append(updated_row9)
-                self.acct_list = acct_list
+                if self.buyer_type is not None:
+                    updated_row10 = unique_buyer_type(updated_row9, self.buyer_type)
+                    acct_list.append(updated_row10)
+                else:
+                    acct_list.append(updated_row9)
+            self.acct_list = acct_list
+
 
 
