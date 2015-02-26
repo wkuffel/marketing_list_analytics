@@ -47,6 +47,7 @@ class match_leads_to_accounts(object):
         'Sales Title',
         'OEM Title',
         'Analytics Title',
+        'Title Group',
         'Clean Company Name1',
 
 
@@ -97,13 +98,13 @@ class match_leads_to_accounts(object):
         final_ds = []
         for marketing_row in self.second_pass_new_ds:
 
-            if marketing_row["Matched"] == True and marketing_row["Job Level"] in ["Director", 'Chief', 'Vice President']:
+            if marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Director", 'Chief', 'Vice President']:
                 marketing_row["Lead Rank"] = 'A'
-            elif marketing_row["Matched"] == True and marketing_row["Job Level"] in ["Below Director"]:
+            elif marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Below Director"]:
                 marketing_row["Lead Rank"] = 'B'
-            elif marketing_row["Matched"] == False and marketing_row["Job Level"] in ["Director", 'Chief', 'Vice President']:
+            elif marketing_row["Matched"] == False and marketing_row["Title Group"] in ["Director", 'Chief', 'Vice President']:
                 marketing_row["Lead Rank"] = 'C'
-            elif marketing_row["Matched"] == False and marketing_row["Job Level"] in ["Below Director"]:
+            elif marketing_row["Matched"] == False and marketing_row["Title Group"] in ["Below Director"]:
                 marketing_row["Lead Rank"] = 'D'
 
 
@@ -241,6 +242,7 @@ class match_leads_to_accounts(object):
 
 
 
+
             if marketing_row['Matched'] == False:
                 for account_row in self.target_accounts_ds:
                      try:
@@ -289,25 +291,10 @@ class match_leads_to_accounts(object):
                 writer.writerow(row)
 
 
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Marketing/Marketing_full_for_delivery processed.csv'
+lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview processed.csv'
 account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Marketing/Marketing_full_for_delivery processed match.csv'
+out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview match.csv'
 
 
 match_leads_to_accounts( lead_file, account_file, out_file, marketo_upload=False)
 
-
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/BI/BI_full_for_delivery processed.csv'
-account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/BI/BI_full_for_delivery processed match.csv'
-
-
-match_leads_to_accounts( lead_file, account_file, out_file, marketo_upload=False)
-
-
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Sales/Sales_full_for_delivery processed.csv'
-account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Sales/Sales_full_for_delivery processed match.csv'
-
-
-match_leads_to_accounts( lead_file, account_file, out_file, marketo_upload=False)

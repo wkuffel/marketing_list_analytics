@@ -12,22 +12,25 @@ class match_leads_to_accounts(object):
         self.out_path = out_file
         self.marketo_upload = marketo_upload
         self.parent_dict = pickle.load( open( picklepath, "rb" ) )
-        self.write_fields = ['Id',
+        self.write_fields = [
+        "Lead Rank",
+        'Company Name',
         'Full Name',
-        'First Name',
-        'Last Name',
         'Job Title',
+        'Title Group',
+        'Buyer Type',
         'Phone Number',
         'Email Address',
+        'State',
+        'Postal Code',
+        'Account Owner',
         'Lead Source',
-        'Company Name',
         'Lead Status',
         'Lead Score',
         'Country',
         'Region',
         'Company Industries',
         'Annual Company Revenue Range (A)',
-        'State',
         'InsideView Account ID',
 
         'Sales Title',
@@ -37,15 +40,20 @@ class match_leads_to_accounts(object):
         'Analytics Title',
         'Operations Title',
         'Decision Maker',
-        'Title Group',
-        'Clean Company Name1',
 
+        'Account',
+        'Operations Buyer',
+
+        'Clean Company Name1',
         'Updated At',
         'Company Employee Range',
         'Annual Company Revenue Range',
         'SFDC Type',
+        'Id',
+        'First Name',
+        'Last Name',
         'Company Name',
-        "Lead Rank",
+
         'Clean Company Name1',
 
         'Matched',
@@ -55,7 +63,6 @@ class match_leads_to_accounts(object):
         'Parent Account ID',
         'Account Name',
         'Account Type',
-        'Account Owner',
         'HQ Country',
         'HQ State',
         'HQ Zip',
@@ -265,7 +272,7 @@ class match_leads_to_accounts(object):
                         pass
 
 
-            if marketing_row['Matched'] == True and (marketing_row['Clean Company Name1'] in ['a', 'unknown', 'test', 'private', 'store', 'retired'] or len(marketing_row['Clean Company Name1'])==1):
+            if marketing_row['Matched'] == True and (marketing_row['Clean Company Name1'] in ['a', 'unknown', 'test', 'private', 'store', 'retired', 'birst'] or len(marketing_row['Clean Company Name1'])==1):
                 marketing_row["Matched"] = False
                 del marketing_row["Matched Clean Name"]
                 del marketing_row["Matched Account ID"]

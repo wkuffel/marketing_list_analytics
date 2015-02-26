@@ -23,6 +23,10 @@ def label_embedded_buyer( row, title = 'Job Title'):
         row['OEM Title'] = True
     elif 'developer' in job_title_string:
         row['OEM Title'] = True
+    elif 'owner' in job_title_string:
+        row['OEM Title'] = True
+    elif 'founder' in job_title_string:
+        row['OEM Title'] = True
     #not in sales
     else:
        row['OEM Title'] = False

@@ -47,6 +47,18 @@ def label_marketing_buyer( row, title = 'Job Title'):
         row['Marketing Title'] = True
     elif 'merchandising' in job_title_string:
         row['Marketing Title'] = True
+    elif 'mktg' in job_title_string:
+        row['Marketing Title'] = True
+    elif 'public relations' in job_title_string:
+        row['Marketing Title'] = True
+    elif 'PR' in job_title_string_same_case:
+        row['Marketing Title'] = True
+    elif ' pr ' in job_title_string:
+        row['Marketing Title'] = True
+    elif 'consumer insight' in job_title_string:
+        row['Marketing Title'] = True
+    elif 'customer insight' in job_title_string:
+        row['Marketing Title'] = True
     #not in marketing
     else:
        row['Marketing Title'] = False

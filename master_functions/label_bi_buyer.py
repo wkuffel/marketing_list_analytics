@@ -21,6 +21,8 @@ def label_bi_buyer(row, title = 'Job Title'):
         row['BI Title'] = True
     elif 'information' in job_title_string:
         row['BI Title'] = True
+    elif 'info ' in job_title_string:
+        row['BI Title'] = True
     elif 'IT' in job_title_string_same_case:#
         row['BI Title'] = True
     elif 'technology' in job_title_string:
@@ -29,7 +31,21 @@ def label_bi_buyer(row, title = 'Job Title'):
         row['BI Title'] = True
     elif 'bi ' in job_title_string: #same with BI
         row['BI Title'] = True
+    elif 'reporting' in job_title_string: #same with BI
+        row['BI Title'] = True
+    elif 'business system' in job_title_string: #same with BI
+        row['BI Title'] = True
     elif 'CIO' in job_title_string_same_case: #same with BI
+        row['BI Title'] = True
+    elif 'CTO' in job_title_string_same_case: #same with BI
+        row['BI Title'] = True
+    elif 'ETL' in job_title_string_same_case:
+        row['BI Title'] = True
+    elif ' IS ' in job_title_string_same_case or 'IS '== job_title_string_same_case[:3] or ' IS'== job_title_string[-3:]:
+        row['BI Title'] = True
+    elif ' MIS ' in job_title_string_same_case or 'MIS '== job_title_string_same_case[:4] or ' MIS'== job_title_string[-4:]:
+        row['BI Title'] = True
+    elif ' HIM ' in job_title_string_same_case or 'HIM '== job_title_string_same_case[:4] or ' HIM'== job_title_string[-4:]:
         row['BI Title'] = True
     #not in sales
     else:

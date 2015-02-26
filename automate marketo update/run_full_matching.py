@@ -18,9 +18,4 @@ class runFullMatch(object):
         match_leads_to_accounts(self.outfile_path_lead, self.account_file, self.final_outfile, marketo_upload=True)
 
 
-
-
-input = 'C:/Users/wkuffel/Desktop/update unranked/20150206/20150206 unranked.csv'
-output = 'C:/Users/wkuffel/Desktop/update unranked/20150206/20150206 unranked processed.csv'
-
-runFullMatch("20150223")
+runFullMatch("20150225")

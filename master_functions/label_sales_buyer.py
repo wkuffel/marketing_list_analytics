@@ -32,7 +32,8 @@ def label_sales_buyer( row, title = 'Job Title'):
         row['Sales Title'] = True
     elif 'partner' in job_title_string:
         row['Sales Title'] = True
-
+    elif 'managing director' in job_title_string:
+        row['Sales Title'] = True
     #not in sales
     else:
        row['Sales Title'] = False

@@ -18,7 +18,7 @@ class loadNetproxpex(object):
         self.outfile = outfile
         self.writing_fields = ['PersonID', 'First Name', 'Last Name','E-Mail','Phone 1','Phone 2', 'Title', 'Organization', 'Common Organization Name', 'Industries',  'Street','City',  'State', 'Postal', 'Country',
                                'Employees', 'Revenue', 'SIC Code', 'County', 'SIC Description',  'Job Function', 'Facebook Profile', 'Twitter Profile','Website', 'LinkedIn Profile',
-                               'Job Level', 'BI Title', 'Operations Title', 'Decision Maker','Marketing Title' , 'Sales Title', 'OEM Title', 'Analytics Title',
+                               'Job Level', 'Title Group', 'BI Title', 'Operations Title', 'Decision Maker','Marketing Title' , 'Sales Title', 'OEM Title', 'Analytics Title',
                                'Clean Company Name1']
 
 
@@ -57,7 +57,7 @@ class loadNetproxpex(object):
 
 
 
-infile = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Sales/Sales_full_for_delivery.csv'
-outfile = 'C:/Users/wkuffel/Desktop/Marketing Data/netprospect/Sales/Sales_full_for_delivery processed.csv'
+infile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview.csv'
+outfile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview processed2.csv'
 
 loadNetproxpex(infile, outfile)
