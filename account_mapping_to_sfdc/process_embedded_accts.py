@@ -5,19 +5,19 @@ from master_functions.clean_account_name import clean_account_name
 import pickle
 
 
-class process_accounts(object):
+class process_embedded_accounts(object):
 
     def __init__(self, inpath, outpath):
         self.inpath = inpath
         self.outpath = outpath
-        self.writing_field_names_ordered = ['Account ID', 'Account Name', 'InsideView Account ID', 'Account Status', 'Total Opportunities', 'Sales Team', 'Account Owner', 'Region', 'HQ Country', 'HQ State', 'HQ Zip', 'Total Won Opportunities', 'Total Won Opportunity Value', 'Total Open Opportunities',  'Industry', 'Company Employee Range', 'Annual Company Revenue Range',  'Parent Account ID', 'Parent Account','Account Type', 'is_parent', 'is_child', 'Clean Company Name']
+        self.writing_field_names_ordered = ['Account ID', 'Account Name', 'InsideView Account ID','Embedded Target', 'Account Status', 'Total Opportunities', 'Sales Team', 'Account Owner', 'Region', 'HQ Country', 'HQ State', 'HQ Zip', 'Total Won Opportunities', 'Total Won Opportunity Value', 'Total Open Opportunities',  'Industry', 'Company Employee Range', 'Annual Company Revenue Range',  'Parent Account ID', 'Parent Account','Account Type', 'is_parent', 'is_child', 'Clean Company Name', 'Last Activity', 'Billing State/Province', 'Last Modified Date']
         self.parent_account_ids = {}
         self.import_csv()
         self.determine_parent_accounts()
         for a in self.parent_account_ids:
             print a + " " + str(self.parent_account_ids[a])
         self.write_to_csv()
-        pickle.dump(self.parent_account_ids , open( "C:/Users/wkuffel/Desktop/Marketing Data/create account links/parent_account_dict.p", "wb" ) )
+        pickle.dump(self.parent_account_ids , open( "C:/Users/wkuffel/Desktop/Marketing Data/create account links/embedded_parent_account_dict.p", "wb" ) )
 
 
     def import_csv(self):
@@ -60,9 +60,7 @@ class process_accounts(object):
             writer = csv.DictWriter(write_csv, fieldnames= self.writing_field_names_ordered, lineterminator = '\n')
             writer.writeheader()
             for row in self.acct_list:
-                #print row.keys()
-                #print row.keys()
-                if 'birst' not in row['Account Name'] and 'salesforce' not in row['Account Name']:
+                if 'birst' not in row['Clean Company Name'] and 'salesforce' not in row['Clean Company Name']:
                     writer.writerow(row)
 
 
@@ -70,4 +68,4 @@ class process_accounts(object):
 
 
 
-process_accounts('C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv')
+process_embedded_accounts('C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/embedded accts.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/embedded accounts processed.csv')

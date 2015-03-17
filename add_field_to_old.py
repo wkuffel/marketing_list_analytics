@@ -31,4 +31,4 @@ class import_and_add(object):
                 #print row
                 writer.writerow(row)
 
-import_and_add('C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset updated.csv')
+#import_and_add('C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset updated.csv')

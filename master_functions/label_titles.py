@@ -40,7 +40,7 @@ def label_decision_maker(row, title = 'Job Title'):
         row['Decision Maker'] = False
 
     for chief_title in ['CEO', 'CFO', 'COO', 'CIO', 'CTO', 'CMO', 'CDO', 'Ceo', 'Cfo', 'Coo', 'Cio', 'Cto', 'Cmo', 'Cdo']:
-        if chief_title in job_title_string_same_case and "assis" not in job_title_string:
+        if (chief_title+' ' in job_title_string_same_case or  ' '+chief_title in job_title_string_same_case or chief_title  == job_title_string_same_case)and "assis" not in job_title_string:
             row['Decision Maker'] = True
 
     return row
@@ -62,7 +62,7 @@ def label_title(row, title = 'Job Title'):
     elif 'vp' in job_title_string:
         row['Title Group'] = 'Vice President'
     elif 'head' in job_title_string:
-        row['Title Group'] = 'Director'
+        row['Title Group'] = 'Vice President'
     elif 'president' in job_title_string:
         row['Title Group'] = 'Chief'
     elif 'lead' in job_title_string:
@@ -86,7 +86,7 @@ def label_title(row, title = 'Job Title'):
         row['Title Group'] = 'Below Director'
 
     for chief_title in ['CEO', 'CFO', 'COO', 'CIO', 'CTO', 'CMO', 'CDO', 'Ceo', 'Cfo', 'Coo', 'Cio', 'Cto', 'Cmo', 'Cdo']:
-        if chief_title in job_title_string_same_case and "assis" not in job_title_string:
+        if (chief_title+' ' in job_title_string_same_case or  ' '+chief_title in job_title_string_same_case or chief_title  == job_title_string_same_case)and "assis" not in job_title_string:
             row['Title Group'] = 'Chief'
 
     return row

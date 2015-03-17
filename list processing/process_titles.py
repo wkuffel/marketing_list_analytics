@@ -17,7 +17,7 @@ class process_titles(object):
     def __init__(self, in_path, out_path):
         self.path = in_path
         self.out_path = out_path
-        self.writing_field_names_ordered = [ 'Full Name',  'Job Title', 'Email Address',   'Phone Number', 'Company Name', 'Job Level', 'Operations Title',  'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Decision Maker', 'Analytics Title', 'Consultant', 'Non Work Email', 'Clean Company Name1',]
+        self.writing_field_names_ordered = ['Lead ID', 'Full Name',  'Job Title', 'Email Address',   'Phone Number', 'Company Name', 'Operations Title',  'Sales Title', 'Marketing Title', 'BI Title', 'OEM Title', 'Decision Maker', 'Analytics Title', 'Consultant', 'Non Work Email', 'Clean Company Name1', 'Title Group']
         #['Job Level', 'Job Title', 'Decision Maker', 'Analytics Title', 'Sales Title', 'BI Title', 'Marketing Title']
         self.import_csv()
         self.write_to_csv()
@@ -38,18 +38,18 @@ class process_titles(object):
             acct_list = []
             print reader
             for row in reader:
-                row['Clean Company Name1'] = clean_account_name(row['Company Name'])
+                #row['Clean Company Name1'] = clean_account_name(row['Company Name'])
                 updated_row2 = label_decision_maker(row)
                 updated_row3 = label_title(updated_row2)
                 updated_row4 = label_sales_buyer(updated_row3)
                 updated_row5 = label_marketing_buyer(updated_row4)
-                updated_row6 = label_bi_buyer(updated_row5)
+                updated_row6 = label_operations_buyer(updated_row5)
                 updated_row7 = label_embedded_buyer(updated_row6)
                 updated_row8 = label_analytics_buyer(updated_row7)
-                updated_row9 = label_operations_buyer(updated_row8)
+                updated_row9 = label_bi_buyer(updated_row8)
                 updated_row10 = label_consultant(updated_row9)
-                updated_row11 = label_non_work_email(updated_row10)
-                acct_list.append(updated_row11)
+                #updated_row11 = label_non_work_email(updated_row10)
+                acct_list.append(updated_row10)
             self.acct_list = acct_list
                 #except:
                 #    pass
@@ -61,7 +61,7 @@ class process_titles(object):
 
 
 
-infile ='C:/Users/wkuffel/Desktop/Marketing Data/20150213 forrester reporting/raw data/forrester analytics to revenue webinar registration 20150213.csv'
-outfile ='C:/Users/wkuffel/Desktop/Marketing Data/20150213 forrester reporting/raw data/forrester analytics to revenue webinar registration 20150213 processed.csv'
+infile ='C:/Users/wkuffel/Desktop/Marketing Data/Stalled Opportunities/Stalled Opp Job Titles.csv'
+outfile ='C:/Users/wkuffel/Desktop/Marketing Data/Stalled Opportunities/Stalled Opp Job Titles written.csv'
 
 process_titles(infile,outfile)

@@ -1,0 +1,33 @@
+__author__ = 'wkuffel'
+
+from master_functions.clean_account_name import clean_account_name
+import csv
+
+class processlistCompNames(object):
+    def __init__(self, in_path, out_path):
+        self.in_path = in_path
+        self.out_path = out_path
+        self.write_fields=['Company Name', 'Website', 'City', 'Solution \nArea', 'Ticker Symbol', 'Clean Company Name', 'Business Model', 'Country', 'Region', 'State', 'Montclare SaaS 250 Rank', 'Revenue Range', 'Public / Private',]
+        self.import_csv()
+        self.write_to_csv()
+
+
+    def import_csv(self):
+        with open(self.in_path) as f:
+            reader = csv.DictReader(f)
+            acct_list = []
+            for row in reader:
+                row['Clean Company Name'] = clean_account_name(row['Company Name'])
+                acct_list.append(row)
+            self.acct_list = acct_list
+
+    def write_to_csv(self):
+        with open(self.out_path, 'w') as write_csv:
+            writer = csv.DictWriter(write_csv, fieldnames=self.write_fields, lineterminator = '\n')
+            writer.writeheader()
+            for row in self.acct_list:
+                print row.keys()
+                writer.writerow(row)
+            print row
+
+processlistCompNames('C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Saas 1000 accounts.csv', 'C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Saas 1000 accounts clear.csv')

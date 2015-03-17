@@ -1,6 +1,39 @@
 __author__ = 'wkuffel'
 
 import csv
+
+class takeEmailCleanClientName(object):
+    def __init__(self, filepath, outpath):
+        self.in_path = filepath
+        self.out_path = outpath
+
+        self.import_csv()
+        self.write_to_csv()
+
+    def import_csv(self):
+        acct_list = []
+        with open(self.in_path) as f:
+            reader = csv.DictReader(f)
+            self.lead_list = []
+            for row in reader:
+                new_dict = {}
+                new_dict['Email'] = row['Email']
+                new_dict["Clean Company Name1"] =row['Clean Company Name1']
+                new_dict['Title Group'] =row['Title Group']
+                self.lead_list.append(new_dict)
+
+    def write_to_csv(self):
+        with open(self.out_path, 'w') as write_csv:
+            writer = csv.DictWriter(write_csv, fieldnames=['Email', 'Clean Company Name1', 'Title Group'], lineterminator = '\n')
+            writer.writeheader()
+            for row in self.lead_list:
+                #print row
+                writer.writerow(row)
+            print row
+
+takeEmailCleanClientName('C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Processed.csv','C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Shortened.csv')
+
+import csv
 from fuzzywuzzy import fuzz
 import pickle
 
@@ -12,42 +45,11 @@ class match_leads_to_accounts(object):
         self.out_path = out_file
         self.marketo_upload = marketo_upload
         self.parent_dict = pickle.load( open( picklepath, "rb" ) )
-        self.write_fields = ['Id',
-        'Marketo SFDC ID',
-        'Full Name',
-        'First Name',
-        'Last Name',
-        'Job Title',
-        'Phone Number',
-        'Email Address',
-        'Lead Source',
-        'Company Name',
-        'Lead Status',
-        'Lead Score',
-        'Country',
-        'Region',
-        'Company Industries',
-        'Annual Company Revenue Range (A)',
-        'State',
-        'InsideView Account ID',
-
-        'Sales Title',
-        'Marketing Title',
-        'OEM Title',
-        'BI Title',
-        'Analytics Title',
-        'Operations Title',
-        'Decision Maker',
+        self.write_fields = [
+        'Email',
+        'Clean Company Name1',
+        'Lead Rank',
         'Title Group',
-        'Clean Company Name1',
-
-        'Updated At',
-        'Company Employee Range',
-        'Annual Company Revenue Range',
-        'SFDC Type',
-        'Company Name',
-        "Lead Rank",
-        'Clean Company Name1',
 
         'Matched',
         'Clean Company Name',
@@ -80,7 +82,8 @@ class match_leads_to_accounts(object):
         'Billing State/Province',
         'Last Modified Date',
         'Last Activity',
-        'Created At'
+        'Created At',
+        'Annual Company Revenue Range', 'Region', 'InsideView Account ID', 'Company Employee Range'
 
         ]
 
@@ -99,7 +102,6 @@ class match_leads_to_accounts(object):
     def final_clean_up(self):
         final_ds = []
         for marketing_row in self.second_pass_new_ds:
-
             if marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Director", 'Chief', 'Vice President']:
                 marketing_row["Lead Rank"] = 'A'
             elif marketing_row["Matched"] == True and marketing_row["Title Group"] in ["Below Director"]:
@@ -145,10 +147,11 @@ class match_leads_to_accounts(object):
 
     def import_marketing_ds(self):
         with open(self.marketing_ds_filepath) as marketing_file:
+            print self.marketing_ds_filepath
             marketing_ds_reader = csv.DictReader(marketing_file)
             marketing_ds = []
             for row in marketing_ds_reader:
-               marketing_ds.append(row)
+                marketing_ds.append(row)
             self.marketing_ds = marketing_ds
 
     def match_parent_child(self):
@@ -202,29 +205,6 @@ class match_leads_to_accounts(object):
             marketing_row["Matched is_child"] = None
             marketing_row["Matched is_parent"] = None
 
-            for account_row in self.target_accounts_ds:
-                if marketing_row["InsideView Account ID"] == account_row["InsideView Account ID"] and account_row["InsideView Account ID"] != '':
-                    match_count +=1
-                    marketing_row["Matched"] = True
-                    marketing_row["Matched Clean Name"] = account_row['Clean Company Name']
-                    marketing_row["Matched Account ID"] = account_row['Account ID']
-                    marketing_row["Matched is_child"] = account_row['is_child']
-                    marketing_row["Matched is_parent"] = account_row['is_parent']
-                    marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
-                    marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
-                    #self.first_pass_new_ds.append(marketing_row)
-                    break
-                elif marketing_row["Account"] == account_row["Account ID"] and account_row["Account ID"] != '':
-                    match_count +=1
-                    marketing_row["Matched"] = True
-                    marketing_row["Matched Clean Name"] = account_row['Clean Company Name']
-                    marketing_row["Matched Account ID"] = account_row['Account ID']
-                    marketing_row["Matched is_child"] = account_row['is_child']
-                    marketing_row["Matched is_parent"] = account_row['is_parent']
-                    marketing_row["InsideView Account ID Account"] = account_row["InsideView Account ID"]
-                    marketing_row["Matched Parent Account ID"] = account_row["Parent Account ID"]
-                    #self.first_pass_new_ds.append(marketing_row)
-                    break
 
             if marketing_row['Matched'] == False:
                 for account_row in self.target_accounts_ds:
@@ -307,38 +287,12 @@ class match_leads_to_accounts(object):
 
 
     def write_to_csv(self):
-        #try:
-        self.additional_fields= []
-        if self.marketo_upload == True:
-
-            self.write_fields = ['Id', "Matched", "Email Address", "Sales Title", "Marketing Title", "OEM Title", "BI Title", "Analytics Title","Operations Title", "Title Group", "Decision Maker", "Lead Rank", 'InsideView Account ID (L)', 'Marketo SFDC ID', 'Created At']
-            self.additional_fields = ['Account']
-            final_ds = []
-            for row in self.final_ds:
-                row['InsideView Account ID (L)'] = row['InsideView Account ID']
-                del row['InsideView Account ID']
-
-                if row['Matched']:
-                    final_ds.append({field: row[field] for field in self.write_fields + self.additional_fields})
-                else:
-                    final_ds.append({field: row[field] for field in self.write_fields})
-            self.final_ds = final_ds
-            #self.final_ds = [{field: row[field] for field in self.write_fields} for row in self.final_ds]
-
         with open(self.out_path, 'w') as write_csv:
-            writer = csv.DictWriter(write_csv, fieldnames=self.write_fields + self.additional_fields , lineterminator = '\n')
+            writer = csv.DictWriter(write_csv, fieldnames=self.write_fields , lineterminator = '\n')
             writer.writeheader()
             for row in self.final_ds:
-                #print row
                 writer.writerow(row)
 
 
-
-#match_leads_to_accounts('C:/Users/wkuffel/Desktop/Marketing Data/20150311 Marketing Database/20150311 Marketing List Processed.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/all target accts.csv','C:/Users/wkuffel/Desktop/Marketing Data/20150311 Marketing Database/20150311 Marketing List Matched.csv',picklepath ='C:/Users/wkuffel/Desktop/Marketing Data/create account links/all_accts_pickle.p')
-
-
-#lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/leads/marketing list processed.csv'
-#account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-#out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/matched results.csv'
-#match_leads_to_accounts(lead_file, account_file, out_file)
+match_leads_to_accounts('C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Shortened.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/all target accts.csv','C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Matched.csv',picklepath ='C:/Users/wkuffel/Desktop/Marketing Data/create account links/all_accts_pickle.p')
 

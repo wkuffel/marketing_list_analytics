@@ -291,9 +291,9 @@ class match_leads_to_accounts(object):
                 writer.writerow(row)
 
 
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview processed.csv'
+lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/Whole File/Birst_Fullfordelivery_2.26.2015 processed.csv'
 account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview match.csv'
+out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/Whole File/Birst_Fullfordelivery_2.26.2015 matched.csv'
 
 
 match_leads_to_accounts( lead_file, account_file, out_file, marketo_upload=False)

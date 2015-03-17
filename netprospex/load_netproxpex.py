@@ -39,10 +39,10 @@ class loadNetproxpex(object):
                 updated_row3 = label_title(updated_row2, title = 'Title')
                 updated_row4 = label_sales_buyer(updated_row3, title = 'Title')
                 updated_row5 = label_marketing_buyer(updated_row4, title = 'Title')
-                updated_row6 = label_bi_buyer(updated_row5, title = 'Title')
+                updated_row6 = label_operations_buyer(updated_row5, title = 'Title')
                 updated_row7 = label_embedded_buyer(updated_row6, title = 'Title')
                 updated_row8 = label_analytics_buyer(updated_row7, title = 'Title')
-                updated_row9 = label_operations_buyer(updated_row8, title = 'Title')
+                updated_row9 = label_bi_buyer(updated_row8, title = 'Title')
                 acct_list.append(updated_row9)
                 self.acct_list = acct_list
 
@@ -57,7 +57,7 @@ class loadNetproxpex(object):
 
 
 
-infile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview.csv'
-outfile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/all titles/Birst_AllLevels_Preview processed2.csv'
+infile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/Whole File/Birst_Fullfordelivery_2.26.2015.csv'
+outfile = 'C:/Users/wkuffel/Desktop/Marketing Data/20150223 BI purchase preview/Whole File/Birst_Fullfordelivery_2.26.2015 processed.csv'
 
 loadNetproxpex(infile, outfile)

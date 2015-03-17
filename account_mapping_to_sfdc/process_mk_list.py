@@ -51,10 +51,10 @@ class lead_list(object):
                 updated_row3 = label_title(updated_row2)
                 updated_row4 = label_sales_buyer(updated_row3)
                 updated_row5 = label_marketing_buyer(updated_row4)
-                updated_row6 = label_bi_buyer(updated_row5)
+                updated_row6 = label_operations_buyer(updated_row5)
                 updated_row7 = label_embedded_buyer(updated_row6)
                 updated_row8 = label_analytics_buyer(updated_row7)
-                updated_row9 = label_operations_buyer(updated_row8)
+                updated_row9 = label_bi_buyer(updated_row8)
                 ##print updated_row
                 #if updated_row1 is not None:
                 #    count +=1

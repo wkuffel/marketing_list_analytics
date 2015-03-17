@@ -8,7 +8,7 @@ class lead_types_by_target_accounts(object):
         self.path = path
         self.target_path = target_path
         self.out_path = out_path
-        self.writing_field_names_ordered = ['Account Name', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
+        self.writing_field_names_ordered = ['Account Name', 'Account ID', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
         'Marketing - Chief',
         'Marketing - VP',
         'Marketing - Director',
@@ -20,7 +20,8 @@ class lead_types_by_target_accounts(object):
         'BI - Director',
         'Operations - Chief',
         'Operations - VP',
-        'Operations - Director']
+        'Operations - Director',
+        'Email suffixes']
 
         print "start"
         self.import_target_list()
@@ -69,7 +70,7 @@ class lead_types_by_target_accounts(object):
                 print count
             if row['Account Name'].strip() not in target_name_dict:
                 target_name_dict.append(row['Account Name'].strip())
-                account_dict = {'Account Name': row['Account Name'], 'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
+                account_dict = {'Account Name': row['Account Name'], 'Account ID': row['Account ID'], 'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
                 'Marketing - Chief': 0,
                 'Marketing - VP': 0,
                 'Marketing - Director': 0,
@@ -81,7 +82,8 @@ class lead_types_by_target_accounts(object):
                 'BI - Director': 0,
                 'Operations - Chief': 0,
                 'Operations - VP': 0,
-                'Operations - Director': 0}
+                'Operations - Director': 0,
+                'Email suffixes': {}}
                 #Company_dict = {'Company Name': row['Company Name'], 'Company ID': row['Company ID'], 'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'OEM Titles':0, 'Other Titles':0}
                 output_dict.append(account_dict)
 
@@ -89,25 +91,25 @@ class lead_types_by_target_accounts(object):
 
         for lead in self.merged_file:
             #print lead
-            count +=1
-            if count % 10000 ==0:
-                print count
-            #if lead["Matched"] == 'True':
-            if lead["Target Account"] == 'True':
 
+            #if lead["Matched"] == 'True':
+            if lead["Matched"] == 'True' or lead["Matched"] == True:
                 for item in range(len(output_dict)):
                     #print output_dict[item]
                     #print lead['Account Name'].strip(), output_dict[item]['Account Name'].strip()
-                    if lead['Account Name'].strip() == output_dict[item]['Account Name'].strip():
-                        if lead['Marketing Title']=='True':
+                    if lead['Account ID'] == output_dict[item]['Account ID']:
+                        count +=1
+                        if count % 10000 ==0:
+                            print count
+                        if lead['Marketing Title']=='True' or lead['Marketing Title']==True:
                             output_dict[item]['Marketing Titles'] +=1
-                        elif lead['Sales Title']=='True':
+                        elif lead['Sales Title']=='True' or lead['Sales Title']==True:
                             output_dict[item]['Sales Titles'] +=1
-                        elif lead['BI Title']=='True':
+                        elif lead['BI Title']=='True' or lead['BI Title']==True:
                             output_dict[item]['BI Titles'] +=1
-                        elif lead['OEM Title']=='True':
+                        elif lead['OEM Title']=='True' or lead['OEM Title']==True:
                             output_dict[item]['Embedded Titles'] +=1
-                        elif lead['Operations Title']=='True':
+                        elif lead['Operations Title']=='True' or lead['Operations Title']==True:
                             output_dict[item]['Operations Titles'] +=1
 
                         if lead['Analytics Title']=='True':
@@ -164,7 +166,18 @@ class lead_types_by_target_accounts(object):
                         elif lead['Job Level'] == 'Below Director':
                             output_dict[item]['Below Director'] +=1
                         #print output_dict[item]
+                        #print lead.keys()
+                        #print lead['Email Address']
+                        try:
+                            email_position = lead['Email Address'].index('@')
+                            email_suffix = lead['Email Address'][email_position:]
 
+                            if email_suffix in output_dict[item]['Email suffixes']:
+                                output_dict[item]['Email suffixes'][email_suffix]+=1
+                            else:
+                                output_dict[item]['Email suffixes'][email_suffix]= 1
+                        except:
+                            pass
                         break
 
         self.output_dict = output_dict
@@ -173,9 +186,9 @@ class lead_types_by_target_accounts(object):
 #targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
 #outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts.csv'
 
-all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150121 marketo update/results/combined full dataset updated.csv'
+all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150226 marketing list analysis/written2.csv'
 targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
-outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts previous run.csv'
+outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150226 marketing list analysis/whitespace 20150226 emails.csv'
 
 
 lead_types_by_target_accounts(all_leads,targets,outpath)

@@ -15,6 +15,6 @@ class processFileList(object):
 
 
 
-raw_file = 'C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150302 Reporting Week/Gartner 2-tier webinar/_Membership__Campaign_id___6255_.csv'
+raw_file = 'C:/Users/wkuffel/Desktop/Campaign Reporting/Marketing/20150309 Reporting/WBN_2015_02_18_Analytics_to_Revenue_Registered.csv'
 
-processFileList(raw_file, 'BI')
+processFileList(raw_file, 'Marketing')
