@@ -38,7 +38,7 @@ class process_titles(object):
             acct_list = []
             print reader
             for row in reader:
-                #row['Clean Company Name1'] = clean_account_name(row['Company Name'])
+                row['Clean Company Name1'] = clean_account_name(row['Company Name'])
                 updated_row2 = label_decision_maker(row)
                 updated_row3 = label_title(updated_row2)
                 updated_row4 = label_sales_buyer(updated_row3)

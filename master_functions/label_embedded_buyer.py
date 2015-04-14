@@ -19,6 +19,8 @@ def label_embedded_buyer( row, title = 'Job Title'):
         row['OEM Title'] = True
     elif 'ceo' == job_title_string:
         row['OEM Title'] = True
+    elif 'chief' in job_title_string and 'executive' in job_title_string:
+        row['OEM Title'] = True
     elif 'technology' in job_title_string:
         row['OEM Title'] = True
     elif 'developer' in job_title_string:

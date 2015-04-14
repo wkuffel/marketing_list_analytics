@@ -34,6 +34,12 @@ def label_sales_buyer( row, title = 'Job Title'):
         row['Sales Title'] = True
     elif 'managing director' in job_title_string:
         row['Sales Title'] = True
+    elif 'CRM' in job_title_string_same_case:
+        row['Sales Title'] = True
+    elif 'biz dev' in job_title_string or job_title_string == "bd" or job_title_string == "bdm":
+        row['Sales Title'] = True
+    elif job_title_string == "se":
+        row['Sales Title'] = True
     #not in sales
     else:
        row['Sales Title'] = False

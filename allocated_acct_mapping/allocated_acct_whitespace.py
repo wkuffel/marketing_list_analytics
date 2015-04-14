@@ -9,7 +9,7 @@ class lead_types_by_target_accounts(object):
         self.target_path = target_path
         self.out_path = out_path
 
-        self.writing_field_names_ordered = ['Account Name','Owner', 'Industry', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
+        self.writing_field_names_ordered = ['Account Name','Owner', 'Industry', 'Total Names', 'Sales Titles', 'Marketing Titles', 'Embedded Titles','BI Titles', 'Analyst Titles', 'Operations Titles', 'Decision Makers', 'Chief', 'Director', 'Vice President', 'Below Director',
         'Marketing - Chief',
         'Marketing - VP',
         'Marketing - Director',
@@ -70,7 +70,7 @@ class lead_types_by_target_accounts(object):
                 print count
             if row['Account Name'].strip() not in target_name_dict:
                 target_name_dict.append(row['Account Name'].strip())
-                account_dict = {'Account Name': row['Account Name'], 'Owner': row['Owner'], 'Industry': row[' Primary Industry'],   'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
+                account_dict = {'Account Name': row['Account Name'], 'Owner': row['Owner'], 'Industry': row[' Primary Industry'], 'Total Names':0,   'BI Titles': 0, 'Sales Titles':0, 'Marketing Titles':0, 'Embedded Titles':0, 'Analyst Titles':0, 'Operations Titles':0, 'Decision Makers':0, 'Chief':0, 'Director':0, 'Vice President':0, 'Below Director':0,
                 'Marketing - Chief': 0,
                 'Marketing - VP': 0,
                 'Marketing - Director': 0,
@@ -93,76 +93,78 @@ class lead_types_by_target_accounts(object):
             count +=1
             if count % 10000 ==0:
                 print count
-            #if lead["Matched"] == 'True':
-            if lead["Matched"] == 'True':
-
+            #if lead["Matched"] == True:
+            if lead["Matched"] == 'TRUE' :
+                #and (lead['Sub Region'] == 'Core EMEA (non-UK)'  or lead['Sub Region'] == 'UK' or lead['Sub Region'] == 'Other EMEA')   :
+                #print lead
                 for item in range(len(output_dict)):
                     #print output_dict[item]
                     #print lead['Account Name'].strip(), output_dict[item]['Account Name'].strip()
                     if lead['Account Name'].strip() == output_dict[item]['Account Name'].strip():
-                        if lead['Marketing Title']=='True':
+                        output_dict[item]['Total Names'] +=1
+                        if lead['Marketing Title']== 'TRUE':
                             output_dict[item]['Marketing Titles'] +=1
-                        elif lead['Sales Title']=='True':
+                        elif lead['Sales Title']=='TRUE':
                             output_dict[item]['Sales Titles'] +=1
-                        elif lead['BI Title']=='True':
+                        elif lead['BI Title']=='TRUE':
                             output_dict[item]['BI Titles'] +=1
-                        elif lead['OEM Title']=='True':
+                        elif lead['OEM Title']=='TRUE':
                             output_dict[item]['Embedded Titles'] +=1
-                        elif lead['Operations Title']=='True':
+                        elif lead['Operations Title']=='TRUE':
                             output_dict[item]['Operations Titles'] +=1
 
-                        if lead['Analytics Title']=='True':
+                        elif lead['Analytics Title']=='TRUE':
                             output_dict[item]['Analyst Titles'] +=1
 
-                        if lead['Marketing Title']=='True' and  lead['Job Level'] == 'Chief':
+                        if lead['Marketing Title']=='TRUE' and  lead['Title Group'] == 'Chief':
                             output_dict[item]['Marketing - Chief'] +=1
-                        if lead['Marketing Title']=='True' and  lead['Job Level'] == 'Vice President':
+                        if lead['Marketing Title']=='TRUE' and  lead['Title Group'] == 'Vice President':
                             output_dict[item]['Marketing - VP'] +=1
-                        if lead['Marketing Title']=='True' and  lead['Job Level'] == 'Director':
+                        if lead['Marketing Title']=='TRUE' and  lead['Title Group'] == 'Director':
                             output_dict[item]['Marketing - Director'] +=1
-                        if lead['Sales Title']=='True' and  lead['Job Level'] == 'Chief':
+                        if lead['Sales Title']=='TRUE' and  lead['Title Group'] == 'Chief':
                             output_dict[item]['Sales - Chief'] +=1
-                        if lead['Sales Title']=='True' and  lead['Job Level'] == 'Vice President':
+                        if lead['Sales Title']=='TRUE' and  lead['Title Group'] == 'Vice President':
                             output_dict[item]['Sales - VP'] +=1
-                        if lead['Sales Title']=='True' and  lead['Job Level'] == 'Director':
+                        if lead['Sales Title']=='TRUE' and  lead['Title Group'] == 'Director':
                             output_dict[item]['Sales - Director'] +=1
-                        if lead['BI Title']=='True' and  lead['Job Level'] == 'Chief':
+                        if lead['BI Title']=='TRUE' and  lead['Title Group'] == 'Chief':
                             output_dict[item]['BI - Chief'] +=1
-                        if lead['BI Title']=='True' and  lead['Job Level'] == 'Vice President':
+                        if lead['BI Title']=='TRUE' and  lead['Title Group'] == 'Vice President':
                             output_dict[item]['BI - VP'] +=1
-                        if lead['BI Title']=='True' and  lead['Job Level'] == 'Director':
+                        if lead['BI Title']=='TRUE' and  lead['Title Group'] == 'Director':
                             output_dict[item]['BI - Director'] +=1
-                        if lead['Operations Title']=='True' and  lead['Job Level'] == 'Chief':
+                        if lead['Operations Title']=='TRUE' and  lead['Title Group'] == 'Chief':
                             output_dict[item]['Operations - Chief'] +=1
-                        if lead['Operations Title']=='True' and  lead['Job Level'] == 'Vice President':
+                        if lead['Operations Title']=='TRUE' and  lead['Title Group'] == 'Vice President':
                             output_dict[item]['Operations - VP'] +=1
-                        if lead['Operations Title']=='True' and  lead['Job Level'] == 'Director':
+                        if lead['Operations Title']=='TRUE' and  lead['Title Group'] == 'Director':
                             output_dict[item]['Operations - Director'] +=1
                         """
-                        if lead['Sales Title']=='True' and (lead['Marketing Title']=='False' and lead['BI Title']=='False' and lead['OEM Title']=='False'):
+                        if lead['Sales Title']==True and (lead['Marketing Title']=='False' and lead['BI Title']=='False' and lead['OEM Title']=='False'):
                             output_dict[item]['Sales Titles'] +=1
-                        if lead['Marketing Title']=='True' and (lead['Sales Title']=='False' and lead['BI Title']=='False' and lead['OEM Title']=='False'):
+                        if lead['Marketing Title']==True and (lead['Sales Title']=='False' and lead['BI Title']=='False' and lead['OEM Title']=='False'):
                             output_dict[item]['Marketing Titles'] +=1
-                        if lead['BI Title']=='True' and (lead['Marketing Title']=='False' and lead['Sales Title']=='False' and lead['OEM Title']=='False'):
+                        if lead['BI Title']==True and (lead['Marketing Title']=='False' and lead['Sales Title']=='False' and lead['OEM Title']=='False'):
                             output_dict[item]['BI Titles'] +=1
-                        if lead['OEM Title']=='True' and (lead['Marketing Title']=='False' and lead['BI Title']=='False' and lead['Sales Title']=='False'):
+                        if lead['OEM Title']==True and (lead['Marketing Title']=='False' and lead['BI Title']=='False' and lead['Sales Title']=='False'):
                             output_dict[item]['OEM Titles'] +=1
-                        if (lead['OEM Title']=='True' and lead['BI Title']=='True') or (lead['Sales Title']=='True' and lead['BI Title']=='True') or (lead['Marketing Title']=='True' and lead['BI Title']=='True') or (lead['OEM Title']=='True' and lead['Sales Title']=='True') or (lead['OEM Title']=='True' and lead['Marketing Title']=='True') or (lead['Sales Title']=='True' and lead['Marketing Title']=='True'):
+                        if (lead['OEM Title']==True and lead['BI Title']==True) or (lead['Sales Title']==True and lead['BI Title']==True) or (lead['Marketing Title']==True and lead['BI Title']==True) or (lead['OEM Title']==True and lead['Sales Title']==True) or (lead['OEM Title']==True and lead['Marketing Title']==True) or (lead['Sales Title']==True and lead['Marketing Title']==True):
                             output_dict[item]['Multiple Title Verticals'] +=1
 
-                        if lead['Decision Maker'] == 'True':
+                        if lead['Decision Maker'] == True:
                             output_dict[item]['Decision Makers'] +=1
-                        if lead['Analytics Title']=='True':
+                        if lead['Analytics Title']==True:
                             output_dict[item]['Analyst Titles'] +=1
                         """
 
-                        if lead['Job Level'] == 'Chief':
+                        if lead['Title Group'] == 'Chief':
                             output_dict[item]['Chief'] +=1
-                        elif lead['Job Level'] == 'Vice President':
+                        elif lead['Title Group'] == 'Vice President':
                             output_dict[item]['Vice President'] +=1
-                        elif lead['Job Level'] == 'Director':
+                        elif lead['Title Group'] == 'Director':
                             output_dict[item]['Director'] +=1
-                        elif lead['Job Level'] == 'Below Director':
+                        elif lead['Title Group'] == 'Below Director':
                             output_dict[item]['Below Director'] +=1
                         #print output_dict[item]
 
@@ -174,9 +176,9 @@ class lead_types_by_target_accounts(object):
 #targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
 #outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts.csv'
 
-all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts matched.csv'
-targets = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts processed.csv'
-outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts and leads.csv'
+all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Marketing List Parts/with sub region info/Birst Marketing List matched.csv'
+targets = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Birst allocated accounts processed.csv'
+outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Marketing List Parts/with sub region info/Birst Marketing List Whitespace All Allocated Accounts.csv'
 
 
 lead_types_by_target_accounts(all_leads,targets,outpath)

@@ -17,21 +17,21 @@ class takeEmailCleanClientName(object):
             self.lead_list = []
             for row in reader:
                 new_dict = {}
-                new_dict['Email'] = row['Email']
+                new_dict['Contact ID'] = row['Contact ID']
                 new_dict["Clean Company Name1"] =row['Clean Company Name1']
                 new_dict['Title Group'] =row['Title Group']
                 self.lead_list.append(new_dict)
 
     def write_to_csv(self):
         with open(self.out_path, 'w') as write_csv:
-            writer = csv.DictWriter(write_csv, fieldnames=['Email', 'Clean Company Name1', 'Title Group'], lineterminator = '\n')
+            writer = csv.DictWriter(write_csv, fieldnames=['Contact ID', 'Clean Company Name1', 'Title Group'], lineterminator = '\n')
             writer.writeheader()
             for row in self.lead_list:
                 #print row
                 writer.writerow(row)
             print row
 
-takeEmailCleanClientName('C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Processed.csv','C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Shortened.csv')
+takeEmailCleanClientName('C:\Users\wkuffel\Desktop\Data Clean Up\Rank Contacts\unranked contact processed.csv','C:\Users\wkuffel\Desktop\Data Clean Up\Rank Contacts\unranked contact processed shortened.csv')
 
 import csv
 from fuzzywuzzy import fuzz
@@ -46,7 +46,7 @@ class match_leads_to_accounts(object):
         self.marketo_upload = marketo_upload
         self.parent_dict = pickle.load( open( picklepath, "rb" ) )
         self.write_fields = [
-        'Email',
+        'Contact ID',
         'Clean Company Name1',
         'Lead Rank',
         'Title Group',
@@ -294,5 +294,5 @@ class match_leads_to_accounts(object):
                 writer.writerow(row)
 
 
-match_leads_to_accounts('C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Shortened.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/all target accts.csv','C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Matched.csv',picklepath ='C:/Users/wkuffel/Desktop/Marketing Data/create account links/all_accts_pickle.p')
+match_leads_to_accounts('C:\Users\wkuffel\Desktop\Data Clean Up\Rank Contacts\unranked contact processed shortened.csv','C:/Users/wkuffel/Desktop/Marketing Data/create account links/all target accts.csv','C:\Users\wkuffel\Desktop\Data Clean Up\Rank Contacts\unranked contact matched.csv',picklepath ='C:/Users/wkuffel/Desktop/Marketing Data/create account links/all_accts_pickle.p')
 

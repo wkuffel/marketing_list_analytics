@@ -10,7 +10,7 @@ class lead_types_by_target_accounts(object):
         self.path = path
         self.target_path = target_path
         self.out_path = out_path
-        self.writing_field_names_ordered = ['Account Name', 'Category 1', 'Category 2', 'Category 3', 'Category 4']
+        self.writing_field_names_ordered = ['Account Name', 'Category 1', 'Category 2', 'Category 3', 'Category 4', "Marketing (included in other counts)"]
 
         print "start"
         self.import_target_list()
@@ -34,6 +34,7 @@ class lead_types_by_target_accounts(object):
             merged_file_reader = csv.DictReader(merged_file)
             merged_file = []
             for row in merged_file_reader:
+                row["Matched"] = bool(row["Matched"])
                 merged_file.append(row)
                 #print row
             self.merged_file = merged_file
@@ -63,23 +64,18 @@ class lead_types_by_target_accounts(object):
                 "Category 1":0,
                 "Category 2":0,
                 "Category 3":0,
-                "Category 4":0
+                "Category 4":0,
+                "Marketing (included in other counts)":0
                 }
                 output_dict.append(account_dict)
-
+        count = 0
         for lead in self.merged_file:
-            #print lead
-            #if lead["Matched"] == 'True':
-            #print lead["Matched"]
-            if lead["Matched"] == 'TRUE' or lead["Matched"] == True:
+            if lead["Matched"] == 'True' or lead["Matched"] == True:
                 for item in range(len(output_dict)):
                     #print output_dict[item]
                     #print lead['Account Name'].strip(), output_dict[item]['Account Name'].strip()
 
                     if lead['Write Company Name'] == output_dict[item]['Account Name']:
-                        count +=1
-                        if count % 1000 ==0:
-                            print count
                         if lead['Lead Rank'] == "Category 1":
                             output_dict[item]["Category 1"] +=1
                         elif lead['Lead Rank'] == "Category 2":
@@ -88,6 +84,8 @@ class lead_types_by_target_accounts(object):
                             output_dict[item]["Category 3"] +=1
                         elif lead['Lead Rank'] == "Category 4":
                             output_dict[item]["Category 4"] +=1
+                        if bool(lead['Marketing Title']) == True and lead['Title Group'] in ['Chief', 'Vice President', 'Director']:
+                            output_dict[item]["Marketing (included in other counts)"] +=1
                         break
 
         self.output_dict = output_dict
@@ -96,9 +94,9 @@ class lead_types_by_target_accounts(object):
 #targets = 'C:/Users/wkuffel/Desktop/Marketing Data/create account links/account datasets/enterprise processed.csv'
 #outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/20150213 marketing list analysis/marketing list by accounts.csv'
 
-all_leads = 'C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Product Tagged Leads matched.csv'
-targets = 'C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Saas 1000 accounts clear.csv'
-outpath = 'C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Saas 1000 Whitespace.csv'
+all_leads = 'C:/Users/wkuffel/Desktop/Marketing Data/All OEM/leads matched to all oem accounts.csv'
+targets = 'C:/Users/wkuffel/Desktop/Marketing Data/All OEM/all oem account processed.csv'
+outpath = 'C:/Users/wkuffel/Desktop/Marketing Data/All OEM/all oem whitespace.csv'
 
 
 lead_types_by_target_accounts(all_leads,targets,outpath)

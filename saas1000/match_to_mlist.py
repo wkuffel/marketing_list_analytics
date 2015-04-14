@@ -109,7 +109,7 @@ class match_leads_to_accounts(object):
                 marketing_row["Lead Rank"] = 'Category 2'
             elif marketing_row["Matched"] == True and marketing_row["Title Group"] =="Below Director" and marketing_row['Tech Product']=='True':
                 marketing_row["Lead Rank"] = 'Category 3'
-            elif marketing_row["Matched"] == True:
+            elif marketing_row["Matched"] == True :
                 marketing_row["Lead Rank"] = 'Category 4'
             else:
                 marketing_row["Lead Rank"] = 'Outside targets'
@@ -242,4 +242,4 @@ class match_leads_to_accounts(object):
 
 
 
-match_leads_to_accounts('C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Product Tagged Leads.csv','C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Saas 1000 accounts clear.csv', 'C:\Users\wkuffel\Desktop\Marketing Data\Saas 1000\Product Tagged Leads matched.csv')
+match_leads_to_accounts('C:/Users/wkuffel/Desktop/Marketing Data/Saas 1000/Product Tagged Leads.csv','C:/Users/wkuffel/Desktop/Marketing Data/All OEM/all oem account processed.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/All OEM/leads matched to all oem accounts.csv')

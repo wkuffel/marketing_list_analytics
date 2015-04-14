@@ -41,13 +41,23 @@ def label_bi_buyer(row, title = 'Job Title'):
         row['BI Title'] = True
     elif 'ETL' in job_title_string_same_case:
         row['BI Title'] = True
-    elif ' IS ' in job_title_string_same_case or 'IS '== job_title_string_same_case[:3] or ' IS'== job_title_string[-3:]:
+    elif 'HIM' in job_title_string_same_case:
+        row['BI Title'] = True
+    elif ' IS ' in job_title_string_same_case or 'IS '== job_title_string_same_case[:3] or ' is'== job_title_string[-3:] or job_title_string == 'is':
         row['BI Title'] = True
     elif ' MIS ' in job_title_string_same_case or 'MIS '== job_title_string_same_case[:4] or ' MIS'== job_title_string[-4:]:
         row['BI Title'] = True
     elif ' HIM ' in job_title_string_same_case or 'HIM '== job_title_string_same_case[:4] or ' HIM'== job_title_string[-4:]:
         row['BI Title'] = True
     elif 'business analyst' in job_title_string and (row['Operations Title'] == False and row['OEM Title'] == False and row['Marketing Title'] == False and row['Sales Title'] == False and row['Operations Title'] == False):
+        row['BI Title'] = True
+    elif 'it' == job_title_string:
+        row['BI Title'] = True
+    elif ' cto' == job_title_string[-4:] or 'cto '== job_title_string[:4]:
+        row['BI Title'] = True
+    elif 'business intellig' == job_title_string:
+        row['BI Title'] = True
+    elif ' it ' in job_title_string:
         row['BI Title'] = True
     #not in sales
     else:

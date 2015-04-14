@@ -15,9 +15,10 @@ class processFileList(object):
 
 
 raw_file_dict = {
-                 'C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Raw Data/ES_2015_1_15_Gartner_BI_Gartner_Filled_Out_Form_BI.csv': 'BI',
-                 'C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Raw Data/Gartner_2_teir_WP_BI_LI_Filled_Out_Form.csv': 'BI',
-                 'C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Raw Data/Gartner_2_teir_WP_BI_SB_Filled_Out_Form.csv':'BI'
+                 'C:/Users/wkuffel/Desktop/Campaign Reporting/Sales/20150401 Reporting/Raw Data/Blue_Hill_Positive_ROI_Blue_Hill_Opens.csv': 'Sales',
+                 'C:/Users/wkuffel/Desktop/Campaign Reporting/Sales/20150401 Reporting/Raw Data/Blue_Hill_Positive_ROI_Clicks.csv': 'Sales',
+                 'C:/Users/wkuffel/Desktop/Campaign Reporting/Sales/20150401 Reporting/Raw Data/Blue_Hill_Positive_ROI_Emails_Sent.csv': 'Sales',
+                 'C:/Users/wkuffel/Desktop/Campaign Reporting/Sales/20150401 Reporting/Raw Data/Blue_Hill_Positive_ROI_Filled_Out_Form.csv': 'Sales',
                  }
 
 processFileList(raw_file_dict)

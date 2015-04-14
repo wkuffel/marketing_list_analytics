@@ -11,13 +11,14 @@ from master_functions.label_maketing_buyer import label_marketing_buyer
 from master_functions.label_titles import label_decision_maker, label_title
 from master_functions.label_operations_buyer import label_operations_buyer
 from master_functions.unique_buyer_type import unique_buyer_type
+from master_functions.label_tech_product import label_tech_product
 
 
 class processJobTitles(object):
     def __init__(self, filepath, outpath):
         self.in_path = filepath
         self.out_path = outpath
-        self.added_keys =['Sales Title', 'Operations Title', 'Clean Company Name1', 'Marketing Title', 'BI Title', 'OEM Title', 'Decision Maker', 'Analytics Title', 'Title Group']
+        self.added_keys =['Sales Title', 'Operations Title', 'Clean Company Name1', 'Marketing Title', 'BI Title', 'OEM Title', 'Decision Maker', 'Analytics Title', 'Title Group', 'Tech Product']
         self.import_csv()
         self.write_to_csv()
 
@@ -30,16 +31,17 @@ class processJobTitles(object):
             for row in reader:
                 self.initial_keys = row.keys()
                 try:
-                    row['Clean Company Name1'] = clean_account_name(row['Company'])
-                    updated_row2 = label_decision_maker(row, title ="Title")
-                    updated_row3 = label_title(updated_row2, title ="Title")
-                    updated_row4 = label_sales_buyer(updated_row3, title ="Title")
-                    updated_row5 = label_marketing_buyer(updated_row4, title ="Title")
-                    updated_row6 = label_operations_buyer(updated_row5, title ="Title")
-                    updated_row7 = label_embedded_buyer(updated_row6, title ="Title")
-                    updated_row8 = label_analytics_buyer(updated_row7, title ="Title")
-                    updated_row9 = label_bi_buyer(updated_row8, title ="Title")
-                    self.lead_list.append(updated_row9)
+                    #row['Clean Company Name1'] = clean_account_name(row['Account Name'])
+                    updated_row2 = label_decision_maker(row)
+                    updated_row3 = label_title(updated_row2)
+                    updated_row4 = label_sales_buyer(updated_row3)
+                    updated_row5 = label_marketing_buyer(updated_row4)
+                    updated_row6 = label_operations_buyer(updated_row5)
+                    updated_row7 = label_embedded_buyer(updated_row6)
+                    updated_row8 = label_analytics_buyer(updated_row7)
+                    updated_row9 = label_bi_buyer(updated_row8)
+                    updated_row10 = label_tech_product(updated_row9)
+                    self.lead_list.append(updated_row10)
                 except AttributeError:
                     pass
 
@@ -50,6 +52,6 @@ class processJobTitles(object):
             for row in self.lead_list:
                 #print row
                 writer.writerow(row)
-                print row
+                #print row
 
-processJobTitles('C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Opens 20150316.csv', 'C:/Users/wkuffel/Desktop/Campaign Reporting/BI - IT/20150316 Reporting Week/Two Tier WP Analysis/Birst 2-Tier WP Downloads Processed.csv')
+processJobTitles('C:/Users/wkuffel/Desktop/Marketing Data/20150413 marketing list clean up/prelim clean up raw.csv', 'C:/Users/wkuffel/Desktop/Marketing Data/20150413 marketing list clean up/prelim clean up processed.csv')

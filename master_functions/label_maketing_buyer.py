@@ -9,6 +9,8 @@ def label_marketing_buyer( row, title = 'Job Title'):
     #is in sales
     if 'marketing' in job_title_string:
         row['Marketing Title'] = True
+    if 'market' in job_title_string:
+        row['Marketing Title'] = True
     elif 'demand generation' in job_title_string:
         row['Marketing Title'] = True
     elif 'digital' in job_title_string:

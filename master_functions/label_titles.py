@@ -73,7 +73,7 @@ def label_title(row, title = 'Job Title'):
         row['Title Group'] = 'Chief'
     elif 'general manager' in job_title_string:
         row['Title Group'] = 'Director'
-    elif job_title_string in ['ceo', 'cfo', 'coo', 'cio', 'cto', 'cmo', 'cdo']:
+    elif job_title_string in ['ceo', 'cfo', 'coo', 'cio', 'cto', 'cmo', 'cdo', 'cpo']:
         row['Title Group'] = 'Chief'
     elif len(job_title_string)>3 and  job_title_string[:4] == 'dir ':
         row['Title Group'] = 'Director'
@@ -85,8 +85,8 @@ def label_title(row, title = 'Job Title'):
     else:
         row['Title Group'] = 'Below Director'
 
-    for chief_title in ['CEO', 'CFO', 'COO', 'CIO', 'CTO', 'CMO', 'CDO', 'Ceo', 'Cfo', 'Coo', 'Cio', 'Cto', 'Cmo', 'Cdo']:
-        if (chief_title+' ' in job_title_string_same_case or  ' '+chief_title in job_title_string_same_case or chief_title  == job_title_string_same_case)and "assis" not in job_title_string:
+    for chief_title in ['CEO', 'CFO', 'COO', 'CIO', 'CTO', 'CMO', 'CDO','CPO', 'Ceo', 'Cfo', 'Coo', 'Cio', 'Cto', 'Cmo', 'Cdo', 'Cpo']:
+        if (chief_title+' ' in job_title_string_same_case or  ' '+chief_title in job_title_string_same_case[-4:] or chief_title  == job_title_string_same_case)and "assis" not in job_title_string:
             row['Title Group'] = 'Chief'
 
     return row

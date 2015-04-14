@@ -28,6 +28,14 @@ class match_leads_to_accounts(object):
                             'Phone',
                             'Website',
                             'Lead Source',
+                             'Title Group',
+                             'Created At',
+                             'Lead Rank',
+                             'Marketo SFDC ID',
+                             'Account',
+                             'Operations Buyer',
+                             'Campaign Name',
+                             'Sub Region',
 
                             'Parent ID',
                             'Parent Name',
@@ -265,8 +273,8 @@ class match_leads_to_accounts(object):
 
 # lead_file, account_file, out_file, marketo_upload=False, picklepath =
 
-lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/marketing list raw processed.csv'
-account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts processed.csv'
-out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/Birst allocated accounts matched.csv'
+lead_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Marketing List Parts/with sub region info/Birst Marketing List processed.csv'
+account_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Birst allocated accounts processed.csv'
+out_file = 'C:/Users/wkuffel/Desktop/Marketing Data/20150331 List Analytics/Marketing List Parts/with sub region info/Birst Marketing List matched.csv'
 pickle_path = 'C:/Users/wkuffel/Desktop/Marketing Data/20150218 allocated acct analysis/allocated_accts_parent_account_dict.p'
 match_leads_to_accounts(lead_file, account_file, out_file, picklepath = pickle_path)

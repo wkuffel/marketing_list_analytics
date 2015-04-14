@@ -311,7 +311,7 @@ class match_leads_to_accounts(object):
         self.additional_fields= []
         if self.marketo_upload == True:
 
-            self.write_fields = ['Id', "Matched", "Email Address", "Sales Title", "Marketing Title", "OEM Title", "BI Title", "Analytics Title","Operations Title", "Title Group", "Decision Maker", "Lead Rank", 'InsideView Account ID (L)', 'Marketo SFDC ID', 'Created At']
+            self.write_fields = ['Id', "Matched", "Email Address", "Sales Title", "Marketing Title", "OEM Title", "BI Title", "Analytics Title","Operations Title", "Title Group", "Decision Maker", "Lead Rank", 'Tech Product', 'InsideView Account ID (L)', 'Marketo SFDC ID', 'Created At']
             self.additional_fields = ['Account']
             final_ds = []
             for row in self.final_ds:
